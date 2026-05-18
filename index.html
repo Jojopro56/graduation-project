@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Story Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="video-container">
+        <video id="story-video" playsinline>
+            Your browser does not support the video tag.
+        </video>
+        
+        <button id="start-btn">Start the Story</button>
+
+        <div id="resume-overlay">
+            <h2>Resume your story?</h2>
+            <div class="resume-buttons">
+                <button id="resume-yes">Yes, continue</button>
+                <button id="resume-no">No, restart</button>
+            </div>
+        </div>
+
+        <div id="choices-overlay"></div>
+
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
+        <button id="subtitle-btn" aria-label="Toggle Subtitles">CC</button>
+
+        <button id="hamburger-btn" aria-label="Open Menu">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+        </button>
+
+        <div id="pause-menu-overlay">
+            <div id="menu-main-panel" class="menu-panel">
+                <button id="menu-continue" class="menu-btn">Continue</button>
+                <button id="menu-restart" class="menu-btn">Restart Experience</button>
+                <button id="menu-mainmenu" class="menu-btn">Back to Main Menu</button>
+            </div>
+            
+            <div id="menu-confirm-panel" class="menu-panel">
+                <h2 id="confirm-text">Are you sure?</h2>
+                <p id="confirm-subtext">Any unsaved progress will be lost.</p>
+                <div class="confirm-buttons">
+                    <button id="confirm-yes" class="menu-btn confirm-yes-btn">Yes</button>
+                    <button id="confirm-no" class="menu-btn confirm-no-btn">No, go back</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
