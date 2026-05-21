@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NWMSU Interactive Experience</title>
+    <link rel="stylesheet" href="menu-style.css">
+</head>
+<body>
+
+    <div id="press-start-screen" class="active">
+        <h1 class="blinking-text">Press ENTER or TAP to Start</h1>
+    </div>
+
+    <div id="main-menu-container">
+        <button id="btn-story" class="menu-block">
+            <div class="block-content">
+                <h2>Story Mode</h2>
+                <p>Begin the interactive narrative</p>
+            </div>
+        </button>
+
+        <div class="right-stack">
+            <button id="btn-guide" class="menu-block wip">
+                <div class="block-content">
+                    <h2>Bearcat Green Guide</h2>
+                    <p>Work in Progress</p>
+                </div>
+            </button>
+
+            <button id="btn-credits" class="menu-block">
+                <div class="block-content">
+                    <h2>Credits</h2>
+                    <p>View the team</p>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div id="tutorial-overlay">
+        <div class="tutorial-container">
+            <img id="tutorial-image" src="images/Tutorial-Grad-Project/placeholders/1.png" alt="Tutorial Panel">
+            
+            <div class="tutorial-controls">
+                <button id="tut-prev" class="tut-btn" disabled>Back</button>
+                <div id="tut-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button id="tut-next" class="tut-btn">Next</button>
+                <button id="tut-start" class="tut-btn" style="display: none;">Start Experience</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="credits-overlay">
+        <div class="credits-container">
+            <button id="credits-close" class="close-btn" aria-label="Close Credits">&times;</button>
+            <h2>Credits</h2>
+
+            <div class="credits-content">
+                <div class="credit-role">Lead Project Producer & Director</div>
+                <div class="credit-name">Joey van der Linden</div>
+
+                <div class="credit-role">Production Assistant & Assistant Producer</div>
+                <div class="credit-name">Tim Hill</div>
+            </div>
+
+            <div class="credits-legal">
+                <p>&copy; 2026 Northwest Missouri State University. All rights reserved.</p>
+                <p>This interactive experience is an official educational product of Northwest Missouri State University. All characters, locations, and events depicted are for educational and promotional purposes.</p>
+                <p>Northwest Missouri State University is an equal opportunity/affirmative action institution.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h2>Loading Assets...</h2>
+        </div>
+    </div>
+
+    <script src="menu-app.js"></script>
+</body>
+</html>

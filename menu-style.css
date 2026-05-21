@@ -1,0 +1,333 @@
+/* --- BASE STYLES & NWMSU THEMING --- */
+:root {
+    --nw-green: #006747;
+    --nw-dark: #004b33;
+    --bg-color: #111;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    font-family: sans-serif;
+    overflow: hidden; /* No scrolling allowed! */
+    color: white;
+}
+
+/* --- 1. PRESS START SCREEN --- */
+#press-start-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('images/main-menu-bg.jpg') center/cover; /* ADD YOUR BACKGROUND HERE */
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+#press-start-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 103, 71, 0.4); /* Bearcat Green Tint */
+}
+
+.blinking-text {
+    position: relative;
+    font-size: 4vmin;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    animation: blink 1.5s infinite;
+    cursor: pointer;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* --- 2. MAIN MENU GRID (FORZA STYLE) --- */
+#main-menu-container {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    height: 100%;
+    box-sizing: border-box;
+    opacity: 0; /* Hidden until Press Start is cleared */
+    transition: opacity 0.5s ease;
+}
+
+.right-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1; /* Takes up right half */
+}
+
+.menu-block {
+    position: relative;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--nw-green);
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+    /* ADD DEFAULT BACKGROUNDS HERE */
+    background-size: cover;
+    background-position: center;
+}
+
+#btn-story {
+    flex: 1; /* Takes up left half full height */
+    background-image: url('images/story-bg.jpg'); 
+}
+
+#btn-guide {
+    flex: 2; /* Taller top right block */
+    background-image: url('images/guide-bg.jpg');
+}
+
+#btn-credits {
+    flex: 1; /* Shorter bottom right block */
+    background-image: url('images/credits-bg.jpg');
+}
+
+/* Darken the backgrounds slightly so text is readable */
+.menu-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,103,71,0.2) 100%);
+    transition: background 0.3s;
+}
+
+.menu-block:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 103, 71, 0.5);
+}
+
+.menu-block:hover::before {
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+}
+
+.block-content {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    z-index: 2;
+}
+
+.menu-block h2 { font-size: 3rem; margin: 0; }
+.menu-block p { font-size: 1.2rem; margin: 5px 0 0 0; color: #ccc; }
+
+/* Work in Progress Styling */
+.menu-block.wip {
+    filter: grayscale(100%);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.menu-block.wip:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- MOBILE VIEW (Stacks blocks vertically) --- */
+@media (max-width: 768px) {
+    #main-menu-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    #btn-story { flex: 2; }
+    .right-stack { flex: 3; }
+    .menu-block h2 { font-size: 2rem; }
+}
+
+/* --- 3. TUTORIAL OVERLAY --- */
+#tutorial-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 110;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+
+.tutorial-container {
+    width: 80%;
+    max-width: 1000px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    border: 2px solid var(--nw-green);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#tutorial-image {
+    width: 100%;
+    height: calc(100% - 80px);
+    object-fit: contain;
+    background: #111;
+}
+
+.tutorial-controls {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background: var(--nw-dark);
+}
+
+.tut-btn {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tut-btn:hover:not(:disabled) {
+    background: white;
+    color: black;
+}
+
+.tut-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#tut-start {
+    background: var(--nw-green);
+    border-color: var(--nw-green);
+}
+
+#tut-dots { display: flex; gap: 10px; }
+.dot { width: 12px; height: 12px; background: #555; border-radius: 50%; }
+.dot.active { background: white; }
+
+/* --- 4. LOADING OVERLAY --- */
+#loading-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('images/loading-bg.jpg') center/cover; /* ADD YOUR BG HERE */
+    z-index: 120;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-overlay::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+}
+
+.loading-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255,255,255,0.3);
+    border-top-color: var(--nw-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* --- 5. CREDITS OVERLAY --- */
+#credits-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 110; /* Same layer as the tutorial overlay */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+
+.credits-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    max-height: 85%;
+    background: var(--nw-dark);
+    border: 2px solid var(--nw-green);
+    border-radius: 12px;
+    padding: 40px;
+    overflow-y: auto; /* Allows scrolling if you add a lot more names later */
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+.credits-container h2 {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: white;
+    border-bottom: 2px solid var(--nw-green);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--nw-green);
+}
+
+.credit-role {
+    font-size: 1.2rem;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.credit-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.credits-legal {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+.credits-legal p {
+    margin: 10px 0;
+    font-size: 0.9rem;
+}

@@ -1,18 +1,19 @@
 // --- 1. THE STORY MANIFEST ---
 const storyManifest = {
     "intro": {
-        folder: "videos/test/", 
+        folder: "videos/1/", 
+        question: "Where should Mikey throw the detergent bin?", 
         choices: [
-            { text: "Choice A", valueChange: -2, nextNode: "testA" },
-            { text: "Choice B", valueChange: 1, nextNode: "testB" }
+            { text: "Look for Another Bin", valueChange: 1, nextNode: "1g" },
+            { text: "Throw in Trash can", valueChange: -2, nextNode: "1b" }
         ]
     },
-    "testA": {
-        folder: "videos/test/sequenceTest-choiceA/",
+    "1g": {
+        folder: "videos/1/1g/",
         choices: []
     },
-    "testB": {
-        folder: "videos/test/sequenceTest-choiceB/",
+    "1b": {
+        folder: "videos/1/1b/",
         choices: []
     }
 };
@@ -51,6 +52,15 @@ const confirmText = document.getElementById('confirm-text');
 
 let pendingConfirmAction = null; // Tracks what the user is confirming (restart or mainmenu)
 
+// NEW: End Screen Variables
+const endOverlay = document.getElementById('end-overlay');
+const endMainMenuBtn = document.getElementById('end-mainmenu');
+
+// Button listener to go back to the main menu
+endMainMenuBtn.addEventListener('click', () => {
+    window.location.href = "mainMenu.html";
+});
+
 // --- 3. SAVE STATE LOGIC (NEW) ---
 
 // Saves the current state of the game to the browser's memory
@@ -85,10 +95,31 @@ function checkSaveData() {
 // --- 4. CORE ENGINE FUNCTIONS ---
 
 function getActiveFolder(nodeData) {
-    if (subtitlesEnabled) {
-        return nodeData.folder.slice(0, -1) + "SUB/";
+    let baseFolder = nodeData.folder;
+    
+    // 1. BULLETPROOFING: Make sure there is always a trailing slash!
+    // If the manifest says "videos/1/1g" instead of "videos/1/1g/", this fixes it automatically.
+    if (!baseFolder.endsWith('/')) {
+        baseFolder += '/';
     }
-    return nodeData.folder;
+    
+    if (subtitlesEnabled) {
+        // Break the path apart
+        const parts = baseFolder.split('/');
+        
+        for (let i = 0; i < parts.length; i++) {
+            // Only add "CC" if it is a real folder name (not empty, not "videos")
+            if (parts[i] !== "" && parts[i] !== "videos" && parts[i] !== "." && parts[i] !== "..") {
+                parts[i] = parts[i] + "CC";
+            }
+        }
+        
+        const finalPath = parts.join('/');
+        console.log(`🎬 [CC Router] Translated path from '${baseFolder}' to '${finalPath}'`);
+        return finalPath;
+    }
+    
+    return baseFolder;
 }
 
 function updateProgressBar() {
@@ -231,7 +262,7 @@ confirmYes.addEventListener('click', () => {
         
     } else if (pendingConfirmAction === 'mainmenu') {
         // Redirect to the main menu page
-        window.location.href = "mainMenu.index.html"; 
+        window.location.href = "mainMenu.html"; 
     }
 });
 
@@ -287,16 +318,44 @@ function handleSequenceEnd() {
     const nodeData = storyManifest[currentNodeId];
     
     if (nodeData.choices && nodeData.choices.length > 0) {
-        showChoices(nodeData.choices);
+        showChoices(nodeData.choices, nodeData.question);
     } else {
         console.log("Story complete! Final Score:", currentScore);
         clearProgress(); // Wipe the save so they can restart later
+        
+        // --- END SCREEN TOGGLE ---
+        // To disable the end screen for testing, just add // in front of the line below:
+        showEndScreen(); 
     }
 }
 
-function showChoices(choicesArray) {
+// A helper function to cleanly reveal the end screen and hide the UI
+function showEndScreen() {
+    // Hide the other UI elements for a clean cinematic ending
+    hamburgerBtn.style.display = 'none';
+    subtitleBtn.style.display = 'none';
+    progressContainer.style.display = 'none';
+    
+    // Reveal the end screen
+    endOverlay.classList.add('active');
+}
+
+function showChoices(choicesArray, questionText) {
     choicesOverlay.innerHTML = ''; 
 
+    // 1. Create and add the title if a question exists for this node
+    if (questionText) {
+        const titleElement = document.createElement('h2');
+        titleElement.id = 'choice-title';
+        titleElement.innerText = questionText;
+        choicesOverlay.appendChild(titleElement);
+    }
+
+    // 2. Create a container specifically for the buttons to keep them side-by-side
+    const btnContainer = document.createElement('div');
+    btnContainer.id = 'choice-buttons-container';
+
+    // 3. Generate the buttons and put them inside the button container
     choicesArray.forEach(choice => {
         const btn = document.createElement('button');
         btn.classList.add('choice-btn');
@@ -308,9 +367,11 @@ function showChoices(choicesArray) {
             playNode(choice.nextNode);
         });
 
-        choicesOverlay.appendChild(btn);
+        btnContainer.appendChild(btn);
     });
 
+    // 4. Add the button container to the overlay and reveal it
+    choicesOverlay.appendChild(btnContainer);
     choicesOverlay.classList.add('active');
 }
 
