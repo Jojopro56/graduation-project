@@ -88,6 +88,8 @@ video {
 #choice-buttons-container {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap; /* NEW: Lets buttons wrap to a second line if needed */
+    gap: 20px;       /* NEW: Adds space between the buttons when they wrap */
     width: 100%;
 }
 
@@ -231,21 +233,22 @@ video {
 #hamburger-btn {
     position: absolute;
     top: 20px;
-    left: 20px; /* Top left corner */
+    left: 20px; 
     background: rgba(0, 0, 0, 0.6);
-    border: none;
+    /* MATCHING CC BUTTON BORDERS */
+    border: 2px solid rgba(255, 255, 255, 0.6); 
     border-radius: 8px;
-    padding: 8px;
+    padding: 8px; /* Kept slightly different than CC just to keep the SVG icon perfectly square */
     cursor: pointer;
     z-index: 30;
     transition: all 0.2s;
     backdrop-filter: blur(4px);
-    display: none; /* Hidden until the story starts */
+    display: none; 
 }
 
 #hamburger-btn:hover {
     background: rgba(0, 0, 0, 0.9);
-    transform: scale(1.05);
+    border-color: white; /* MATCHING CC BUTTON HOVER */
 }
 
 #hamburger-btn svg {
@@ -383,4 +386,242 @@ video {
     color: #ccc;
     font-size: 1.5rem;
     margin: 0 0 40px 0;
+}
+
+/* --- DEVELOPER MENU --- */
+#dev-menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 40, 0.95); /* Dark blue tint */
+    z-index: 100; /* Highest layer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+#dev-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#dev-menu-overlay h2 {
+    color: #0f0; /* Hacker green */
+    font-family: monospace;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.dev-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dev-btn {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background: #111;
+    color: white;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dev-btn:hover {
+    background: #0f0;
+    color: black;
+}
+
+#dev-close-btn {
+    border-color: #0f0;
+    color: #0f0;
+}
+
+#dev-close-btn:hover {
+    background: #0f0;
+    color: black;
+}
+
+/* --- OUTCOME FEEDBACK SCREEN --- */
+#outcome-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent so video frame is visible */
+    z-index: 25; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+}
+
+#outcome-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.outcome-box {
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid white;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#outcome-overlay.active .outcome-box {
+    transform: scale(1);
+}
+
+#outcome-title {
+    font-size: 3rem;
+    margin: 0 0 20px 0;
+}
+
+/* Dynamic colors injected via JS */
+#outcome-title.good { color: #0f0; }
+#outcome-title.bad { color: #f00; }
+
+#outcome-text {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ddd;
+    margin: 0 0 30px 0;
+}
+
+/* --- CHAPTER LOADER SCREEN --- */
+#chapter-loader-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Add your custom loading background image here: */
+    background: url('images/loading-bg.jpg') center/cover;
+    background-color: #111;
+    z-index: 90; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* Smooth 0.6s fade in and out */
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out; 
+}
+
+#chapter-loader-overlay::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); 
+}
+
+#chapter-loader-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.loader-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+.loader-content h2 {
+    color: white;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* NEW: Loader Progress Bar Styles */
+#loader-progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#loader-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--nw-green, #006747); /* Uses your Bearcat green */
+    transition: width 0.3s ease-out; /* Smoothly animates the width changes */
+}
+
+/* --- CIRCULAR TIMER --- */
+#timer-container {
+    position: absolute;
+    top: 80px;  /* NEW: Moved down to avoid overlapping the CC button */
+    right: 20px;
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+}
+
+.progress-ring__circle {
+    /* Smooth animation as JS updates the offset */
+    transition: stroke-dashoffset 0.05s linear, stroke 0.3s ease;
+    transform: rotate(-90deg); /* Starts the circle at 12 o'clock */
+    transform-origin: 50% 50%;
+    stroke: #0f0; /* Starts Bearcat Green */
+}
+
+#timer-text {
+    position: absolute;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    font-family: monospace;
+}
+
+/* --- DEV MENU PASSCODE STYLES --- */
+#dev-auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#dev-passcode-input {
+    padding: 15px;
+    font-size: 1.5rem;
+    background: #111;
+    color: #0f0;
+    border: 2px solid #0f0;
+    border-radius: 5px;
+    text-align: center;
+    font-family: monospace;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+#dev-passcode-input:focus {
+    box-shadow: 0 0 15px #0f0;
 }
