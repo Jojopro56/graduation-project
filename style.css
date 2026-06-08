@@ -31,16 +31,33 @@ video {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 15px 35px;
+    font-size: 1.3rem;
     font-weight: bold;
     color: white;
-    background-color: #e50914; 
-    border: none;
-    border-radius: 5px;
+    background-color: #006747; /* NEW: Bearcat Green */
+    border: 2px solid white;    /* NEW: Crisp white border matching theme */
+    border-radius: 8px;
     cursor: pointer;
     z-index: 40;
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    
+    /* NEW: Default to hidden so it fades in after 3 seconds */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, background-color 0.3s, transform 0.2s;
+}
+
+#start-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#start-btn:hover {
+    background-color: #004b33; /* Dark Bearcat Green fallback */
+    transform: translate(-50%, -50%) scale(1.05);
 }
 
 #start-btn:hover {
@@ -141,7 +158,6 @@ video {
     transition: width 0.6s ease-out, background-color 0.6s ease-out;
 }
 
-/* Add to your style.css */
 #subtitle-btn {
     position: absolute;
     top: 20px;
@@ -155,21 +171,37 @@ video {
     font-weight: bold;
     cursor: pointer;
     z-index: 30;
-    transition: all 0.2s;
     backdrop-filter: blur(4px);
-    display: none; /* Hidden until the story starts */
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* UPDATED: Added 'transform' to the transition list for smooth hover scaling */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s ease;
 }
 
-#subtitle-btn:hover {
-    background: rgba(0, 0, 0, 0.9);
+#subtitle-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* NEW: Hover effect turns the button Bearcat Green and grows it slightly */
+#subtitle-btn.visible:hover {
+    background: #006747;
     border-color: white;
+    transform: scale(1.05);
 }
 
-/* When subtitles are turned on, invert the colors */
+/* NEW: When subtitles are toggled ON, the button turns solid white with black text */
 #subtitle-btn.active {
     background: white;
     color: black;
     border-color: white;
+}
+
+#subtitle-btn.active:hover {
+    background: #e6e6e6;
 }
 
 /* --- RESUME OVERLAY STYLES --- */
@@ -235,24 +267,31 @@ video {
     top: 20px;
     left: 20px; 
     background: rgba(0, 0, 0, 0.6);
-    /* MATCHING CC BUTTON BORDERS */
     border: 2px solid rgba(255, 255, 255, 0.6); 
     border-radius: 8px;
-    padding: 8px; /* Kept slightly different than CC just to keep the SVG icon perfectly square */
+    padding: 8px; 
     cursor: pointer;
     z-index: 30;
-    transition: all 0.2s;
     backdrop-filter: blur(4px);
-    display: none; 
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* UPDATED: Added 'transform' to the transition list for smooth hover scaling */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, background 0.2s, border-color 0.2s, transform 0.2s ease;
 }
 
-#hamburger-btn:hover {
-    background: rgba(0, 0, 0, 0.9);
-    border-color: white; /* MATCHING CC BUTTON HOVER */
+#hamburger-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-#hamburger-btn svg {
-    display: block;
+/* NEW: Hover effect turns the menu button Bearcat Green and grows it slightly */
+#hamburger-btn.visible:hover {
+    background: #006747;
+    border-color: white;
+    transform: scale(1.05);
 }
 
 /* --- PAUSE MENU OVERLAY --- */
@@ -575,21 +614,35 @@ video {
 /* --- CIRCULAR TIMER --- */
 #timer-container {
     position: absolute;
-    top: 80px;  /* NEW: Moved down to avoid overlapping the CC button */
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: none; 
     align-items: center;
     justify-content: center;
     width: 80px;
     height: 80px;
+    z-index: 35;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* State 1: Pops up aggressively large in the center of view to catch attention */
+#timer-container.intro-anim {
+    top: 40%;
+    transform: translateX(-50%) scale(2);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.6));
+}
+
+/* State 2: Smoothly slides up under the progress bar and minimizes */
+#timer-container.settled {
+    top: calc(5% + 20px); /* Placed perfectly below the top progress bar position */
+    transform: translateX(-50%) scale(0.9);
 }
 
 .progress-ring__circle {
-    /* Smooth animation as JS updates the offset */
     transition: stroke-dashoffset 0.05s linear, stroke 0.3s ease;
-    transform: rotate(-90deg); /* Starts the circle at 12 o'clock */
+    transform: rotate(-90deg);
     transform-origin: 50% 50%;
-    stroke: #0f0; /* Starts Bearcat Green */
+    stroke: #0f0; 
 }
 
 #timer-text {
@@ -624,4 +677,105 @@ video {
 
 #dev-passcode-input:focus {
     box-shadow: 0 0 15px #0f0;
+}
+
+/* --- DYNAMIC TRANSITION FOR TIMED ANSWERS --- */
+@keyframes choiceContentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Automatically handles smooth entry transitions when elements are added to DOM */
+#choice-title, #choice-buttons-container {
+    animation: choiceContentFadeIn 0.4s ease-out forwards;
+}
+
+/* --- OVERLAY TUTORIAL TOOLTIPS --- */
+.menu-tooltip, .cc-tooltip, .progress-tooltip {
+    position: absolute;
+    background: rgba(0, 75, 51, 0.98); /* Rich thematic dark green */
+    color: white;
+    padding: 12px 20px; /* INCREASED: Generous readable padding */
+    border-radius: 8px; /* Smooth professional rounded edges */
+    font-size: 1.05rem; /* INCREASED: Clear, sharp typography scale */
+    white-space: nowrap;
+    z-index: 100;
+    pointer-events: none;
+    
+    /* Default hidden states for onboarding entry animations */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+    font-family: sans-serif;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* Tooltip appearance logic based on matching visible parent components */
+#hamburger-btn.visible .menu-tooltip,
+#subtitle-btn.visible .cc-tooltip,
+.progress-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-tooltip { 
+    left: 0; 
+    top: 68px; /* INCREASED: Pushed lower beneath button frame */
+}
+.cc-tooltip { 
+    right: 0; 
+    top: 68px; /* INCREASED: Pushed lower beneath button frame */
+}
+
+.progress-tooltip {
+    top: calc(5% + 28px); /* NEW: Positioned comfortably under the top bar line with air margin */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Graceful dismissal transitions handled via structural engine code resets */
+.menu-tooltip.fade-out, .cc-tooltip.fade-out, .progress-tooltip.fade-out {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* --- RESPONSIVE MOBILE TWEAKS FOR TOOLTIPS --- */
+@media (max-width: 768px) {
+    .menu-tooltip, .cc-tooltip, .progress-tooltip {
+        /* Allow text to wrap to multiple lines to prevent long single-line collisions */
+        white-space: normal; 
+        font-size: 0.9rem; /* Scale down typography slightly for mobile viewports */
+        padding: 10px 14px; /* Slightly tighter padding bounds for smaller screens */
+        line-height: 1.3;
+    }
+
+    .menu-tooltip { 
+        left: 0; 
+        top: 65px; 
+        max-width: 110px; /* Restricts width so it stays on the left third of the screen */
+        text-align: left;
+    }
+
+    .cc-tooltip { 
+        right: 0; 
+        top: 65px; 
+        max-width: 110px; /* Restricts width so it stays on the right third of the screen */
+        text-align: right;
+    }
+
+    .progress-tooltip {
+        top: calc(5% + 32px); /* Comfortably separates vertical alignment under the bar track */
+        max-width: 150px;     /* Restricts center width to fit exactly in the layout gap */
+        text-align: center;
+    }
 }

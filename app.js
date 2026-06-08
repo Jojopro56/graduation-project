@@ -5,8 +5,8 @@ const storyManifest = {
         folder: "videos/1/",
         question: "Where should Mikey throw the detergent bin?",
         choices: [
-            { text: "Look for Another Bin", valueChange: 1, nextNode: "1g" },
-            { text: "Throw in Trash can", valueChange: -2, nextNode: "1b" }
+            { text: "Look for Another Bin", valueChange: 1.6, nextNode: "1g" },
+            { text: "Throw in Trash can", valueChange: -3.2, nextNode: "1b" }
         ]
     },
     "1g": {
@@ -27,8 +27,8 @@ const storyManifest = {
         folder: "videos/2/",
         question: "Where should Mikey throw the cup?",
         choices: [
-            { text: "Plastic Bin", valueChange: -2, nextNode: "2b" },
-            { text: "Landfill Bin", valueChange: 1, nextNode: "2g" }
+            { text: "Plastic Bin", valueChange: -3.2, nextNode: "2b" },
+            { text: "Landfill Bin", valueChange: 1.6, nextNode: "2g" }
         ]
     },
     "2g": {
@@ -49,8 +49,8 @@ const storyManifest = {
         folder: "videos/3/",
         question: "Where should Mikey throw the test away?",
         choices: [
-            { text: "In Classroom Trash Can", valueChange: -2, nextNode: "3b" },
-            { text: "Look for Another Bin", valueChange: 1, nextNode: "3g" }
+            { text: "In Classroom Trash Can", valueChange: -3.2, nextNode: "3b" },
+            { text: "Look for Another Bin", valueChange: 1.6, nextNode: "3g" }
         ]
     },
     "3g": {
@@ -71,8 +71,8 @@ const storyManifest = {
         folder: "videos/4/",
         question: "What should Mikey do?",
         choices: [
-            { text: "Throw in Multiple Bins", valueChange: 1, nextNode: "4g" },
-            { text: "Throw in Paper Bin", valueChange: -2, nextNode: "4b" }
+            { text: "Throw in Multiple Bins", valueChange: 1.6, nextNode: "4g" },
+            { text: "Throw in Paper Bin", valueChange: -3.2, nextNode: "4b" }
         ]
     },
     "4g": {
@@ -93,8 +93,8 @@ const storyManifest = {
         folder: "videos/5/",
         question: "Where should Mikey Throw the Empty Bottle?",
         choices: [
-            { text: "Landfill Bin", valueChange: -2, nextNode: "5b" },
-            { text: "Plastic Bin", valueChange: 1, nextNode: "5g" }
+            { text: "Landfill Bin", valueChange: -3.2, nextNode: "5b" },
+            { text: "Plastic Bin", valueChange: 1.6, nextNode: "5g" }
         ]
     },
     "5g": {
@@ -111,56 +111,52 @@ const storyManifest = {
     },
 
     // --- CHAPTER 6 (THE GAUNTLET) ---
-    // Part 1 (Correct answer is #4)
     "chap6": {
-        folder: "videos/6/", 
-        question: "Where should Mikey throw his FRY BOX away?", 
-        timeLimit: 7,          // CHANGED: 7 seconds on the clock!
-        timeoutNode: "6b_time", 
+        folder: "videos/6/",
+        question: "Where should Mikey throw his FRY BOX away?",
+        timeLimit: 10,
+        timeoutNode: "6b_time",
         choices: [
-            { text: "Throw in Paper Bin", valueChange: -2, nextNode: "6b_1" }, 
-            { text: "Throw in Metal Cans Bin", valueChange: -2, nextNode: "6b_1" },
-            { text: "Throw in Plastic Bin", valueChange: -2, nextNode: "6b_1" },
-            { text: "Throw in Landfill Bin", valueChange: 1, nextNode: "6c2" } 
+            { text: "Paper Bin", valueChange: -1.0, nextNode: "6b_1" },
+            { text: "Metal Cans Bin", valueChange: -1.0, nextNode: "6b_1" },
+            { text: "Plastic Bin", valueChange: -1.0, nextNode: "6b_1" },
+            { text: "Landfill Bin", valueChange: 0.5, nextNode: "6c2" }
         ]
     },
-    // Part 2 (Correct answer is #1)
     "6c2": {
-        folder: "videos/6/6c2/", 
+        folder: "videos/6/6c2/",
         question: "Where should Mikey throw his CLEAN PAPER BAG away?",
-        timeLimit: 7,          // CHANGED: 7 seconds on the clock!
-        timeoutNode: "6b_time", 
+        timeLimit: 10,
+        timeoutNode: "6b_time",
         choices: [
-            { text: "Throw in Paper Bin", valueChange: 1, nextNode: "6c3" }, 
-            { text: "Throw in Metal Cans Bin", valueChange: -2, nextNode: "6b_2" }, 
-            { text: "Throw in Plastic Bin", valueChange: -2, nextNode: "6b_2" },
-            { text: "Throw in Landfill Bin", valueChange: -2, nextNode: "6b_2" }
+            { text: "Paper Bin", valueChange: 0.5, nextNode: "6c3" },
+            { text: "Metal Cans Bin", valueChange: -1.0, nextNode: "6b_2" },
+            { text: "Plastic Bin", valueChange: -1.0, nextNode: "6b_2" },
+            { text: "Landfill Bin", valueChange: -1.0, nextNode: "6b_2" }
         ]
     },
-    // Part 3 (Correct answer is #2)
     "6c3": {
-        folder: "videos/6/6c3/", 
-        question: "Where should Mikey throw his SODA CAN away?", 
-        timeLimit: 7,          // CHANGED: 7 seconds on the clock!
+        folder: "videos/6/6c3/",
+        question: "Where should Mikey throw his SODA CAN away?",
+        timeLimit: 10,
         timeoutNode: "6b_time",
         choices: [
-            { text: "Throw in Paper Bin", valueChange: -2, nextNode: "6b_3" }, 
-            { text: "Throw in Metal Cans Bin", valueChange: 1, nextNode: "6c4" }, 
-            { text: "Throw in Plastic Bin", valueChange: -2, nextNode: "6b_3" },
-            { text: "Throw in Landfill Bin", valueChange: -2, nextNode: "6b_3" }
+            { text: "Paper Bin", valueChange: -1.0, nextNode: "6b_3" },
+            { text: "Metal Cans Bin", valueChange: 0.5, nextNode: "6c4" },
+            { text: "Plastic Bin", valueChange: -1.0, nextNode: "6b_3" },
+            { text: "Landfill Bin", valueChange: -1.0, nextNode: "6b_3" }
         ]
     },
-    // Part 4 (Final Choice - Correct answer is #3)
     "6c4": {
-        folder: "videos/6/6c4/", 
-        question: "Where should Mikey throw his PLASTIC BOTTLE away?", 
-        timeLimit: 7,          // CHANGED: 7 seconds on the clock!
+        folder: "videos/6/6c4/",
+        question: "Where should Mikey throw his PLASTIC BOTTLE away?",
+        timeLimit: 10,
         timeoutNode: "6b_time",
         choices: [
-            { text: "Throw in Paper Bin", valueChange: -2, nextNode: "6b_4" }, 
-            { text: "Throw in Metal Cans Bin", valueChange: -2, nextNode: "6b_4" },
-            { text: "Throw in Plastic Bin", valueChange: 1, nextNode: "6g" }, 
-            { text: "Throw in Landfill Bin", valueChange: -2, nextNode: "6b_4" }
+            { text: "Paper Bin", valueChange: -1.0, nextNode: "6b_4" },
+            { text: "Metal Cans Bin", valueChange: -1.0, nextNode: "6b_4" },
+            { text: "Plastic Bin", valueChange: 0.5, nextNode: "6g" },
+            { text: "Landfill Bin", valueChange: -1.0, nextNode: "6b_4" }
         ]
     },
 
@@ -171,8 +167,6 @@ const storyManifest = {
         outcomeTitle: "Good Job!",
         outcomeText: "You successfully sorted all the items into their proper bins!"
     },
-    
-    // NEW: Dynamic Failure Nodes
     "6b_time": {
         folder: "videos/6/6b/",
         autoNext: "chap7",
@@ -208,12 +202,12 @@ const storyManifest = {
     "chap7": {
         isRouter: true,
         routeBasedOnScore: function (score) {
-            if (score === 9) {
-                return "7p"; // Perfect Score
-            } else if (score >= 6) {
-                return "7g"; // Good Score (6, 7, 8)
+            if (score >= 9.9) {
+                return "7p"; // Perfect Score (10)
+            } else if (score >= 6.5) {
+                return "7g"; // Good Score (Pass threshold matching original 66%)
             } else {
-                return "7b"; // Bad Score (5 and below)
+                return "7b"; // Bad Score
             }
         }
     },
@@ -241,7 +235,7 @@ let currentScore = 0;
 let currentNodeId = null;
 let currentSequenceIndex = 1;
 let subtitlesEnabled = false;
-const MAX_SCORE = 9;
+const MAX_SCORE = 10; // CHANGED: Scales perfectly with our 1.6 and 0.5 point distribution
 
 // NEW: Pause Menu Variables
 const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -290,7 +284,46 @@ const timerText = document.getElementById('timer-text');
 const timerCircle = document.querySelector('.progress-ring__circle');
 let countdownTimerInterval = null; // Holds the active timer so we can kill it
 const timerSound = document.getElementById('timer-sound'); // NEW: The audio element
+// NEW: Progress Bar Simulation Variables & Functions
+let progressBarSimulationInterval = null;
 
+function startProgressBarSimulation() {
+    let growing = true;
+    let simulatedScore = 0;
+    
+    if (progressBarSimulationInterval) clearInterval(progressBarSimulationInterval);
+    
+    // Creates a smooth loop filling and draining the bar at 50 frames per second
+    progressBarSimulationInterval = setInterval(() => {
+        if (growing) {
+            simulatedScore += 0.08;
+            if (simulatedScore >= MAX_SCORE) {
+                simulatedScore = MAX_SCORE;
+                growing = false;
+            }
+        } else {
+            simulatedScore -= 0.08;
+            if (simulatedScore <= 0) {
+                simulatedScore = 0;
+                growing = true;
+            }
+        }
+        
+        // Dynamically matches your core color and width formula
+        const widthPercentage = (simulatedScore / MAX_SCORE) * 100;
+        const greenIntensity = Math.floor(50 + (205 * (simulatedScore / MAX_SCORE)));
+
+        progressBar.style.width = `${widthPercentage}%`;
+        progressBar.style.backgroundColor = `rgb(0, ${greenIntensity}, 0)`;
+    }, 20); 
+}
+
+function stopProgressBarSimulation() {
+    if (progressBarSimulationInterval) {
+        clearInterval(progressBarSimulationInterval);
+        progressBarSimulationInterval = null;
+    }
+}
 // Button listener to go back to the main menu
 endMainMenuBtn.addEventListener('click', () => {
     window.location.href = "mainMenu.html";
@@ -321,9 +354,41 @@ function clearProgress() {
 function checkSaveData() {
     const savedString = localStorage.getItem('storySaveData');
     if (savedString) {
-        // We have a save file! Hide the start button and show the Resume menu.
-        startBtn.style.display = 'none';
+        // We have a save file! Ensure start button stays hidden, pop open resume layout
+        startBtn.classList.remove('visible');
         resumeOverlay.style.display = 'flex';
+        
+        // Immediately show navigation tools when continuing
+        subtitleBtn.classList.add('visible');
+        hamburgerBtn.classList.add('visible');
+        
+        // Hide tooltips via class
+        const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+        tooltips.forEach(t => t.classList.add('fade-out'));
+        
+        stopProgressBarSimulation();
+    } else {
+        // FRESH START SCREEN SEQUENCE:
+        // 1. Instantly reveal menu, CC utility modules, and progress container outline smoothly
+        setTimeout(() => {
+            subtitleBtn.classList.add('visible');
+            hamburgerBtn.classList.add('visible');
+            
+            // Show progress bar container background track + reveal its onboarding tooltip
+            progressContainer.style.display = 'block';
+            progressContainer.classList.add('visible');
+            
+            const progTooltip = document.querySelector('.progress-tooltip');
+            if (progTooltip) progTooltip.classList.add('visible');
+        }, 200);
+
+        // 2. Wait exactly 3 seconds, then reveal start button. Tooltips stay visible!
+        setTimeout(() => {
+            startBtn.classList.add('visible');
+        }, 3000);
+
+        // Start the progress bar simulation loop
+        startProgressBarSimulation();
     }
 }
 
@@ -368,13 +433,19 @@ function updateProgressBar() {
 
 // --- BUTTON LISTENERS ---
 
-// Replace your Start Button listener with this:
 startBtn.addEventListener('click', () => {
     console.log("1. Start button clicked!");
-    startBtn.style.display = 'none';
+    startBtn.classList.remove('visible'); // Smoothly hide the start button
     progressContainer.style.display = 'block';
-    subtitleBtn.style.display = 'block';
-    hamburgerBtn.style.display = 'block';
+    
+    // Stop the progress bar looping simulation immediately
+    stopProgressBarSimulation();
+
+    // Clean up tooltip elements from DOM tree by fading them out smoothly
+    const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+    tooltips.forEach(t => {
+        t.classList.add('fade-out');
+    });
     console.log("2. UI elements revealed!");
 
     updateProgressBar();
@@ -397,18 +468,45 @@ resumeYes.addEventListener('click', () => {
 
     resumeOverlay.style.display = 'none';
     progressContainer.style.display = 'block';
-    subtitleBtn.style.display = 'block';
-    hamburgerBtn.style.display = 'block'; // NEW: Show hamburger
+    
+    // UPDATED: Smoothly reveal navigation tools via classes instead of hard display inline rules
+    subtitleBtn.classList.add('visible');
+    hamburgerBtn.classList.add('visible');
+
+    // Stop the simulation loop because they chose to resume existing progress
+    stopProgressBarSimulation();
+
+    // Instantly hide onboarding tooltips since they're resuming
+    const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+    tooltips.forEach(t => t.classList.add('fade-out'));
 
     // Jump straight into the exact video where they left off
     playCurrentSequenceVideo();
 });
 
-// Restart button: Wipe the save and show the start button
+// Restart button: Wipe the save and show the start button cleanly with onboarding visuals
 resumeNo.addEventListener('click', () => {
     clearProgress();
     resumeOverlay.style.display = 'none';
-    startBtn.style.display = 'block';
+    
+    // Re-adds the .visible class so the start button fades back in!
+    startBtn.classList.add('visible'); 
+    
+    // Keep tracking utility blocks active on screen for layout positioning
+    subtitleBtn.classList.add('visible');
+    hamburgerBtn.classList.add('visible');
+    progressContainer.style.display = 'block';
+    progressContainer.classList.add('visible');
+    
+    // Bring back onboarding tooltip callouts smoothly by removing fade-out and enforcing visibility
+    const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+    tooltips.forEach(t => {
+        t.classList.remove('fade-out');
+        t.classList.add('visible'); // FIX: Directly reinforces the .visible class state for the progress tooltip!
+    });
+
+    // Fire back up the looping visualization metrics animation cue
+    startProgressBarSimulation();
 });
 
 subtitleBtn.addEventListener('click', () => {
@@ -598,8 +696,9 @@ function handleSequenceEnd() {
 // A helper function to cleanly reveal the end screen and hide the UI
 function showEndScreen() {
     // Hide the other UI elements for a clean cinematic ending
-    hamburgerBtn.style.display = 'none';
-    subtitleBtn.style.display = 'none';
+    // UPDATED: Smoothly transition them away via visibility classes rather than breaking animations
+    hamburgerBtn.classList.remove('visible');
+    subtitleBtn.classList.remove('visible');
     progressContainer.style.display = 'none';
 
     // Reveal the end screen
@@ -610,8 +709,51 @@ function showChoices(choicesArray, questionText) {
     choicesOverlay.innerHTML = ''; 
     const nodeData = storyManifest[currentNodeId]; // Grab current node info
 
-    // --- NEW: TIMER LOGIC ---
-    // If the node has a timeLimit, setup and start the clock
+    // NEW HELPER: Encapsulates building the title and buttons so we can delay them
+    function renderContent() {
+        // 1. Create and add the title
+        if (questionText) {
+            const titleElement = document.createElement('h2');
+            titleElement.id = 'choice-title';
+            titleElement.innerText = questionText;
+            choicesOverlay.appendChild(titleElement);
+        }
+
+        // 2. Create the buttons container
+        const btnContainer = document.createElement('div');
+        btnContainer.id = 'choice-buttons-container';
+
+        // 3. Generate the buttons
+        choicesArray.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.classList.add('choice-btn');
+            btn.innerText = choice.text;
+
+            btn.addEventListener('click', () => {
+                // Stop the timer if they click in time!
+                if(countdownTimerInterval) {
+                    clearInterval(countdownTimerInterval);
+                    timerSound.loop = false;
+                    timerSound.pause();
+                }
+                timerContainer.style.display = 'none'; 
+
+                currentScore += choice.valueChange;
+                if (currentScore < 0) {
+                    currentScore = 0;
+                }
+                updateProgressBar();
+                playNode(choice.nextNode);
+            });
+
+            btnContainer.appendChild(btn);
+        });
+
+        // 4. Reveal it
+        choicesOverlay.appendChild(btnContainer);
+    }
+
+    // --- TIMER LOGIC ---
     if (nodeData.timeLimit) {
         // Prepare the SVG math
         const radius = timerCircle.r.baseVal.value;
@@ -623,18 +765,33 @@ function showChoices(choicesArray, questionText) {
         timerCircle.style.stroke = "#0f0"; // Start Green
         timerContainer.style.display = 'flex';
         
-        // NEW: Reset and play the ticking sound!
+        // Apply cinematic slide-down intro animation classes
+        timerContainer.classList.remove('settled');
+        timerContainer.classList.add('intro-anim');
+        
+        // Append timerContainer immediately so it displays during intro animation
+        choicesOverlay.appendChild(timerContainer);
+        choicesOverlay.classList.add('active');
+        
+        // ADJUSTED: Let the timer flash, and spawn the questions/buttons ONLY when it settles!
+        setTimeout(() => {
+            timerContainer.classList.remove('intro-anim');
+            timerContainer.classList.add('settled');
+            
+            // Spawns question text and answers right as the clock hits the top bar position
+            renderContent(); 
+        }, 1200);
+        
+        // Reset and enable audio looping immediately
         timerSound.currentTime = 0;
-        // We use .catch() just in case the browser blocks autoplay
+        timerSound.loop = true; 
         timerSound.play().catch(err => console.warn("Audio blocked by browser:", err));
         
         const totalMs = nodeData.timeLimit * 1000;
         const startTime = Date.now();
         
-        // Clear any old timers just in case
         if(countdownTimerInterval) clearInterval(countdownTimerInterval);
 
-        // Tick every 50ms for a buttery smooth circle drain
         countdownTimerInterval = setInterval(() => {
             const elapsed = Date.now() - startTime;
             let timeLeft = Math.ceil((totalMs - elapsed) / 1000);
@@ -642,26 +799,22 @@ function showChoices(choicesArray, questionText) {
             if (timeLeft < 0) timeLeft = 0;
             timerText.innerText = timeLeft;
 
-            // Drain the circle
             const percentage = Math.max(0, 1 - (elapsed / totalMs));
             const offset = circumference - (percentage * circumference);
             timerCircle.style.strokeDashoffset = offset;
 
-            // Panic mode! Turn red at 2 seconds
-            if (timeLeft <= 2) {
+            if (timeLeft <= 3) {
                 timerCircle.style.stroke = "#f00";
             }
 
-            // TIME IS UP!
             if (elapsed >= totalMs) {
                 clearInterval(countdownTimerInterval);
-                timerContainer.style.display = 'none'; // Hide timer
+                timerContainer.style.display = 'none'; 
                 
-                // NEW: Stop the ticking sound!
                 timerSound.pause();
+                timerSound.loop = false;
                 
-                // Deduct points, floor at 0, and trigger the failure node
-                currentScore -= 2;
+                currentScore -= 1;
                 if(currentScore < 0) currentScore = 0;
                 updateProgressBar();
                 playNode(nodeData.timeoutNode);
@@ -669,54 +822,12 @@ function showChoices(choicesArray, questionText) {
         }, 50);
 
     } else {
-        // If no time limit, ensure it stays hidden
+        // Standard non-timed chapters load everything all at once
         timerContainer.style.display = 'none';
+        choicesOverlay.appendChild(timerContainer);
+        renderContent();
+        choicesOverlay.classList.add('active');
     }
-
-    // Re-inject the timer into the overlay (since we cleared it above)
-    choicesOverlay.appendChild(timerContainer);
-
-    // 1. Create and add the title
-    if (questionText) {
-        const titleElement = document.createElement('h2');
-        titleElement.id = 'choice-title';
-        titleElement.innerText = questionText;
-        choicesOverlay.appendChild(titleElement);
-    }
-
-    // 2. Create the buttons container
-    const btnContainer = document.createElement('div');
-    btnContainer.id = 'choice-buttons-container';
-
-    // 3. Generate the buttons
-    choicesArray.forEach(choice => {
-        const btn = document.createElement('button');
-        btn.classList.add('choice-btn');
-        btn.innerText = choice.text;
-
-        btn.addEventListener('click', () => {
-            // Stop the timer if they click in time!
-            if(countdownTimerInterval) {
-                clearInterval(countdownTimerInterval);
-                // NEW: Stop the ticking sound if they answered in time!
-                timerSound.pause();
-            }
-            timerContainer.style.display = 'none'; 
-
-            currentScore += choice.valueChange;
-            if (currentScore < 0) {
-                currentScore = 0;
-            }
-            updateProgressBar();
-            playNode(choice.nextNode);
-        });
-
-        btnContainer.appendChild(btn);
-    });
-
-    // 4. Reveal it
-    choicesOverlay.appendChild(btnContainer);
-    choicesOverlay.classList.add('active');
 }
 
 // INITIALIZE: Run this immediately to see what UI to display
@@ -728,13 +839,13 @@ document.addEventListener('keydown', (event) => {
     // NEW: Developer Menu Toggle (Press 'P')
     if ((event.key === 'p' || event.key === 'P') && currentNodeId !== null) {
         devMenuOverlay.classList.toggle('active');
-        
+
         // If the menu was just opened and isn't authenticated yet, focus the input!
         if (devMenuOverlay.classList.contains('active') && !isDevAuthenticated) {
             devPasscodeInput.value = ''; // Clear old attempts
             devAuthError.style.display = 'none';
             // Slight delay ensures the CSS transition allows focus
-            setTimeout(() => devPasscodeInput.focus(), 100); 
+            setTimeout(() => devPasscodeInput.focus(), 100);
         }
     }
 
@@ -873,14 +984,13 @@ devBtns.forEach(btn => {
         // Find out which chapter this button is supposed to skip to
         const targetNode = e.target.getAttribute('data-node');
 
-        // Give the player a "fake" score based on the chapter so the progress bar isn't empty
         if (targetNode === 'intro') currentScore = 0;
-        if (targetNode === 'chap2') currentScore = 1;
-        if (targetNode === 'chap3') currentScore = 2;
-        if (targetNode === 'chap4') currentScore = 3;
-        if (targetNode === 'chap5') currentScore = 4;
-        if (targetNode === 'chap6') currentScore = 5;
-        if (targetNode === 'chap7') currentScore = 9;
+        if (targetNode === 'chap2') currentScore = 1.6;
+        if (targetNode === 'chap3') currentScore = 3.2;
+        if (targetNode === 'chap4') currentScore = 4.8;
+        if (targetNode === 'chap5') currentScore = 6.4;
+        if (targetNode === 'chap6') currentScore = 8.0; // Hits exactly 80%!
+        if (targetNode === 'chap7') currentScore = 10.0; // Perfect score
 
         updateProgressBar();
 
