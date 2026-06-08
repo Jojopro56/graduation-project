@@ -10,12 +10,14 @@ body, html {
 
 #video-container {
     position: relative;
-    width: 100vw; /* 100% of the Viewport Width */
-    height: 100vh; /* 100% of the Viewport Height */
+    width: 100vw; 
+    height: 100vh;   /* Fallback for older legacy browsers */
+    height: 100dvh;  /* NEW: Dynamic Viewport Height prevents clipping beneath browser bars */
     background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 video {
@@ -777,5 +779,36 @@ video {
         top: calc(5% + 32px); /* Comfortably separates vertical alignment under the bar track */
         max-width: 150px;     /* Restricts center width to fit exactly in the layout gap */
         text-align: center;
+    }
+}
+
+/* --- LANDSCAPE MOBILE OPTIMIZATIONS --- */
+@media (orientation: landscape) and (max-height: 500px) {
+    /* Scale down progress bar to prevent cluttering the top frame area */
+    #progress-container {
+        top: 3%;
+        max-width: 280px;
+        height: 8px;
+    }
+
+    /* Keep the floating buttons sleek and tucked into the corners */
+    #hamburger-btn, #subtitle-btn {
+        top: 10px;
+        padding: 6px;
+    }
+
+    #subtitle-btn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    /* Ensure choice buttons don't overflow the short vertical space */
+    .choice-btn {
+        padding: 1.5% 4%;
+        font-size: 3vmin;
+    }
+
+    #choice-title {
+        font-size: 4.5vmin;
     }
 }
