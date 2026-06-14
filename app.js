@@ -1,12 +1,12 @@
 // --- 1. THE STORY MANIFEST ---
 const storyManifest = {
-    // --- CHAPTER 1 --- (Good choice: LEFT)
+    // --- CHAPTER 1 ---
     "intro": {
         folder: "videos/1/",
         question: "Where should Mikey throw the detergent bin?",
         choices: [
-            { text: "Look for Another Bin", valueChange: 1.6, nextNode: "1g" },
-            { text: "Throw in Trash can", valueChange: -3.2, nextNode: "1b" }
+            { text: "Find Another Bin", valueChange: 160, nextNode: "1g" },
+            { text: "Throw in Trash Can", valueChange: -320, nextNode: "1b" }
         ]
     },
     "1g": {
@@ -22,13 +22,13 @@ const storyManifest = {
         outcomeText: "Detergent bottles are highly recyclable plastic. Throwing them in the trash fills up landfills unnecessarily."
     },
 
-    // --- CHAPTER 2 --- (Good choice: RIGHT)
+    // --- CHAPTER 2 ---
     "chap2": {
         folder: "videos/2/",
         question: "Where should Mikey throw the cup?",
         choices: [
-            { text: "Plastic Bin", valueChange: -3.2, nextNode: "2b" },
-            { text: "Landfill Bin", valueChange: 1.6, nextNode: "2g" }
+            { text: "Toss in Plastic Bin", valueChange: -320, nextNode: "2b" },
+            { text: "Toss in Landfill Bin", valueChange: 160, nextNode: "2g" }
         ]
     },
     "2g": {
@@ -44,13 +44,13 @@ const storyManifest = {
         outcomeText: "Empty your cup at all times, and throw it in the landfill as it's not recyclable!"
     },
 
-    // --- CHAPTER 3 --- (Good choice: RIGHT)
+    // --- CHAPTER 3 ---
     "chap3": {
         folder: "videos/3/",
         question: "Where should Mikey throw the test away?",
         choices: [
-            { text: "In Classroom Trash Can", valueChange: -3.2, nextNode: "3b" },
-            { text: "Look for Another Bin", valueChange: 1.6, nextNode: "3g" }
+            { text: "Toss in Trash Can", valueChange: -320, nextNode: "3b" },
+            { text: "Find Hold Onto the Test", valueChange: 160, nextNode: "3g" }
         ]
     },
     "3g": {
@@ -66,13 +66,13 @@ const storyManifest = {
         outcomeText: "A waste of paper! It's better to throw the test in a paper bin instead of a standard trash can so the paper can be recycled."
     },
 
-    // --- CHAPTER 4 --- (Good choice: LEFT)
+    // --- CHAPTER 4 ---
     "chap4": {
         folder: "videos/4/",
-        question: "What should Mikey do?",
+        question: "What should Mikey do with the pizza box?",
         choices: [
-            { text: "Throw in Multiple Bins", valueChange: 1.6, nextNode: "4g" },
-            { text: "Throw in Paper Bin", valueChange: -3.2, nextNode: "4b" }
+            { text: "Tear Pizza Box In Half and Toss", valueChange: 160, nextNode: "4g" },
+            { text: "Toss Entire Box in Paper Bin", valueChange: -320, nextNode: "4b" }
         ]
     },
     "4g": {
@@ -88,13 +88,13 @@ const storyManifest = {
         outcomeText: "The pizza box was greasy, and contaminates the clean paper that's already in the bin."
     },
 
-    // --- CHAPTER 5 --- (Good choice: RIGHT)
+    // --- CHAPTER 5 ---
     "chap5": {
         folder: "videos/5/",
         question: "Where should Mikey Throw the Empty Bottle?",
         choices: [
-            { text: "Landfill Bin", valueChange: -3.2, nextNode: "5b" },
-            { text: "Plastic Bin", valueChange: 1.6, nextNode: "5g" }
+            { text: "Landfill Bin", valueChange: -320, nextNode: "5b" },
+            { text: "Plastic Bin", valueChange: 160, nextNode: "5g" }
         ]
     },
     "5g": {
@@ -117,10 +117,10 @@ const storyManifest = {
         timeLimit: 10,
         timeoutNode: "6b_time",
         choices: [
-            { text: "Paper Bin", valueChange: -1.0, nextNode: "6b_1" },
-            { text: "Metal Cans Bin", valueChange: -1.0, nextNode: "6b_1" },
-            { text: "Plastic Bin", valueChange: -1.0, nextNode: "6b_1" },
-            { text: "Landfill Bin", valueChange: 0.5, nextNode: "6c2" }
+            { text: "Paper Bin", valueChange: -100, nextNode: "6b_1" },
+            { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_1" },
+            { text: "Plastic Bin", valueChange: -100, nextNode: "6b_1" },
+            { text: "Landfill Bin", valueChange: 50, nextNode: "6c2" }
         ]
     },
     "6c2": {
@@ -129,10 +129,10 @@ const storyManifest = {
         timeLimit: 10,
         timeoutNode: "6b_time",
         choices: [
-            { text: "Paper Bin", valueChange: 0.5, nextNode: "6c3" },
-            { text: "Metal Cans Bin", valueChange: -1.0, nextNode: "6b_2" },
-            { text: "Plastic Bin", valueChange: -1.0, nextNode: "6b_2" },
-            { text: "Landfill Bin", valueChange: -1.0, nextNode: "6b_2" }
+            { text: "Paper Bin", valueChange: 50, nextNode: "6c3" },
+            { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_2" },
+            { text: "Plastic Bin", valueChange: -100, nextNode: "6b_2" },
+            { text: "Landfill Bin", valueChange: -100, nextNode: "6b_2" }
         ]
     },
     "6c3": {
@@ -141,10 +141,10 @@ const storyManifest = {
         timeLimit: 10,
         timeoutNode: "6b_time",
         choices: [
-            { text: "Paper Bin", valueChange: -1.0, nextNode: "6b_3" },
-            { text: "Metal Cans Bin", valueChange: 0.5, nextNode: "6c4" },
-            { text: "Plastic Bin", valueChange: -1.0, nextNode: "6b_3" },
-            { text: "Landfill Bin", valueChange: -1.0, nextNode: "6b_3" }
+            { text: "Paper Bin", valueChange: -100, nextNode: "6b_3" },
+            { text: "Metal Cans Bin", valueChange: 50, nextNode: "6c4" },
+            { text: "Plastic Bin", valueChange: -100, nextNode: "6b_3" },
+            { text: "Landfill Bin", valueChange: -100, nextNode: "6b_3" }
         ]
     },
     "6c4": {
@@ -153,10 +153,10 @@ const storyManifest = {
         timeLimit: 10,
         timeoutNode: "6b_time",
         choices: [
-            { text: "Paper Bin", valueChange: -1.0, nextNode: "6b_4" },
-            { text: "Metal Cans Bin", valueChange: -1.0, nextNode: "6b_4" },
-            { text: "Plastic Bin", valueChange: 0.5, nextNode: "6g" },
-            { text: "Landfill Bin", valueChange: -1.0, nextNode: "6b_4" }
+            { text: "Paper Bin", valueChange: -100, nextNode: "6b_4" },
+            { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_4" },
+            { text: "Plastic Bin", valueChange: 50, nextNode: "6g" },
+            { text: "Landfill Bin", valueChange: -100, nextNode: "6b_4" }
         ]
     },
 
@@ -202,12 +202,12 @@ const storyManifest = {
     "chap7": {
         isRouter: true,
         routeBasedOnScore: function (score) {
-            if (score >= 9.9) {
-                return "7p"; // Perfect Score (10)
-            } else if (score >= 6.5) {
-                return "7g"; // Good Score (Pass threshold matching original 66%)
+            if (score >= 990) {
+                return "7p"; // Perfect Pass Score (1000 points)
+            } else if (score >= 650) {
+                return "7g"; // Normal Passing Score threshold matching original metrics balance 
             } else {
-                return "7b"; // Bad Score
+                return "7b"; // Bad Score failure path
             }
         }
     },
@@ -235,7 +235,7 @@ let currentScore = 0;
 let currentNodeId = null;
 let currentSequenceIndex = 1;
 let subtitlesEnabled = false;
-const MAX_SCORE = 10; // CHANGED: Scales perfectly with our 1.6 and 0.5 point distribution
+const MAX_SCORE = 1000; // UPDATED: Changed from 10 to a solid 1000 base points target
 
 // NEW: Pause Menu Variables
 const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -284,38 +284,41 @@ const timerText = document.getElementById('timer-text');
 const timerCircle = document.querySelector('.progress-ring__circle');
 let countdownTimerInterval = null; // Holds the active timer so we can kill it
 const timerSound = document.getElementById('timer-sound'); // NEW: The audio element
+
 // NEW: Progress Bar Simulation Variables & Functions
 let progressBarSimulationInterval = null;
 
 function startProgressBarSimulation() {
     let growing = true;
     let simulatedScore = 0;
-    
+
     if (progressBarSimulationInterval) clearInterval(progressBarSimulationInterval);
-    
-    // Creates a smooth loop filling and draining the bar at 50 frames per second
+
     progressBarSimulationInterval = setInterval(() => {
         if (growing) {
-            simulatedScore += 0.08;
+            simulatedScore += 8; // Counts up in increments
             if (simulatedScore >= MAX_SCORE) {
                 simulatedScore = MAX_SCORE;
                 growing = false;
             }
         } else {
-            simulatedScore -= 0.08;
+            simulatedScore -= 8;
             if (simulatedScore <= 0) {
                 simulatedScore = 0;
                 growing = true;
             }
         }
-        
-        // Dynamically matches your core color and width formula
+
         const widthPercentage = (simulatedScore / MAX_SCORE) * 100;
         const greenIntensity = Math.floor(50 + (205 * (simulatedScore / MAX_SCORE)));
 
         progressBar.style.width = `${widthPercentage}%`;
         progressBar.style.backgroundColor = `rgb(0, ${greenIntensity}, 0)`;
-    }, 20); 
+
+        // Live feedback text counting update during start screen simulation
+        const scoreCounter = document.getElementById('score-digital-counter');
+        if (scoreCounter) scoreCounter.innerText = `${Math.floor(simulatedScore)} / ${MAX_SCORE}`;
+    }, 20);
 }
 
 function stopProgressBarSimulation() {
@@ -329,7 +332,7 @@ endMainMenuBtn.addEventListener('click', () => {
     window.location.href = "mainMenu.html";
 });
 
-// --- 3. SAVE STATE LOGIC (NEW) ---
+// --- 3. SAVE STATE LOGIC ---
 
 // Saves the current state of the game to the browser's memory
 function saveProgress() {
@@ -357,15 +360,15 @@ function checkSaveData() {
         // We have a save file! Ensure start button stays hidden, pop open resume layout
         startBtn.classList.remove('visible');
         resumeOverlay.style.display = 'flex';
-        
+
         // Immediately show navigation tools when continuing
         subtitleBtn.classList.add('visible');
         hamburgerBtn.classList.add('visible');
-        
+
         // Hide tooltips via class
         const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
         tooltips.forEach(t => t.classList.add('fade-out'));
-        
+
         stopProgressBarSimulation();
     } else {
         // FRESH START SCREEN SEQUENCE:
@@ -373,11 +376,11 @@ function checkSaveData() {
         setTimeout(() => {
             subtitleBtn.classList.add('visible');
             hamburgerBtn.classList.add('visible');
-            
+
             // Show progress bar container background track + reveal its onboarding tooltip
             progressContainer.style.display = 'block';
             progressContainer.classList.add('visible');
-            
+
             const progTooltip = document.querySelector('.progress-tooltip');
             if (progTooltip) progTooltip.classList.add('visible');
         }, 200);
@@ -398,7 +401,6 @@ function getActiveFolder(nodeData) {
     let baseFolder = nodeData.folder;
 
     // 1. BULLETPROOFING: Make sure there is always a trailing slash!
-    // If the manifest says "videos/1/1g" instead of "videos/1/1g/", this fixes it automatically.
     if (!baseFolder.endsWith('/')) {
         baseFolder += '/';
     }
@@ -429,6 +431,48 @@ function updateProgressBar() {
 
     progressBar.style.width = `${widthPercentage}%`;
     progressBar.style.backgroundColor = `rgb(0, ${greenIntensity}, 0)`;
+
+    // Updates the center scoreboard counter numbers text
+    const scoreCounter = document.getElementById('score-digital-counter');
+    if (scoreCounter) {
+        scoreCounter.innerText = `${visualScore} / ${MAX_SCORE}`;
+    }
+}
+
+// NEW: Injects arcade popups (+/- points) and applies Pokémon-style shake triggers
+function triggerScoreEffect(amount) {
+    const bubble = document.getElementById('score-floating-bubble');
+    if (!bubble) return;
+
+    // Clear out old running animation states cleanly
+    progressContainer.classList.remove('good-choice-shake', 'bad-choice-shake');
+    bubble.classList.remove('pop-active', 'plus', 'minus');
+
+    // Force browser layout repaint reflow to allow immediate animation re-triggering
+    void progressContainer.offsetWidth;
+    void bubble.offsetWidth;
+
+    if (amount > 0) {
+        bubble.innerText = `+${amount}`;
+        bubble.classList.add('pop-active', 'plus');
+        progressContainer.classList.add('good-choice-shake');
+        
+        // NEW: Cleans up the bounce animation class once it finishes its jump
+        setTimeout(() => {
+            progressContainer.classList.remove('good-choice-shake');
+        }, 600);
+        
+    } else if (amount < 0) {
+        bubble.innerText = `${amount}`;
+        bubble.classList.add('pop-active', 'minus');
+        progressContainer.classList.add('bad-choice-shake');
+        
+        // NEW: Holds solid red for 2 seconds, then removes the class. 
+        // Once removed, the 3-second CSS transition kicks in to fade back to normal!
+        setTimeout(() => {
+            progressContainer.classList.remove('bad-choice-shake');
+        }, 2000);
+    }
 }
 
 // --- BUTTON LISTENERS ---
@@ -437,7 +481,7 @@ startBtn.addEventListener('click', () => {
     console.log("1. Start button clicked!");
     startBtn.classList.remove('visible'); // Smoothly hide the start button
     progressContainer.style.display = 'block';
-    
+
     // Stop the progress bar looping simulation immediately
     stopProgressBarSimulation();
 
@@ -468,7 +512,7 @@ resumeYes.addEventListener('click', () => {
 
     resumeOverlay.style.display = 'none';
     progressContainer.style.display = 'block';
-    
+
     // UPDATED: Smoothly reveal navigation tools via classes instead of hard display inline rules
     subtitleBtn.classList.add('visible');
     hamburgerBtn.classList.add('visible');
@@ -488,16 +532,16 @@ resumeYes.addEventListener('click', () => {
 resumeNo.addEventListener('click', () => {
     clearProgress();
     resumeOverlay.style.display = 'none';
-    
+
     // Re-adds the .visible class so the start button fades back in!
-    startBtn.classList.add('visible'); 
-    
+    startBtn.classList.add('visible');
+
     // Keep tracking utility blocks active on screen for layout positioning
     subtitleBtn.classList.add('visible');
     hamburgerBtn.classList.add('visible');
     progressContainer.style.display = 'block';
     progressContainer.classList.add('visible');
-    
+
     // Bring back onboarding tooltip callouts smoothly by removing fade-out and enforcing visibility
     const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
     tooltips.forEach(t => {
@@ -588,7 +632,7 @@ confirmYes.addEventListener('click', () => {
         clearProgress(); // Wipe the save
         currentScore = 0; // Reset score
 
-        updateProgressBar(); // NEW: Tell the UI to redraw the empty bar!
+        updateProgressBar(); // Tell the UI to redraw the empty bar!
 
         pauseMenuOverlay.classList.remove('active');
         playNode("intro"); // Start from the beginning
@@ -604,13 +648,12 @@ confirmYes.addEventListener('click', () => {
 function playNode(nodeId) {
     const nodeData = storyManifest[nodeId];
 
-    // --- NEW: DYNAMIC ROUTING LOGIC ---
-    // If this is a router node, calculate the path and instantly jump to it!
+    // --- DYNAMIC ROUTING LOGIC ---
     if (nodeData.isRouter) {
         const destinationNode = nodeData.routeBasedOnScore(currentScore);
         console.log(`🔀 [Router] Score is ${currentScore}. Jumping to: ${destinationNode}`);
         playNode(destinationNode);
-        return; // Stop here so we don't try to play the invisible router node
+        return; 
     }
 
     // --- STANDARD PLAYBACK LOGIC ---
@@ -622,7 +665,6 @@ function playNode(nodeId) {
     playCurrentSequenceVideo();
 }
 
-// Replace your playCurrentSequenceVideo function with this:
 function playCurrentSequenceVideo() {
     const nodeData = storyManifest[currentNodeId];
     const videoPath = `${getActiveFolder(nodeData)}${currentSequenceIndex}.mp4`;
@@ -630,7 +672,6 @@ function playCurrentSequenceVideo() {
     console.log(`3. Attempting to load video at: ${videoPath}`);
     video.src = videoPath;
 
-    // We explicitly catch any playback errors so they don't happen in silence
     video.play().then(() => {
         console.log("4. SUCCESS: Video is playing!");
     }).catch((err) => {
@@ -666,9 +707,8 @@ function handleSequenceEnd() {
     if (nodeData.choices && nodeData.choices.length > 0) {
         showChoices(nodeData.choices, nodeData.question);
     }
-    // 2. NEW: If there is an outcome screen defined, freeze frame and show feedback!
+    // 2. If there is an outcome screen defined, freeze frame and show feedback!
     else if (nodeData.outcomeTitle) {
-        // Style the title red or green based on the text
         if (nodeData.outcomeTitle === "Good Job!") {
             outcomeTitle.className = "good";
         } else {
@@ -693,10 +733,7 @@ function handleSequenceEnd() {
     }
 }
 
-// A helper function to cleanly reveal the end screen and hide the UI
 function showEndScreen() {
-    // Hide the other UI elements for a clean cinematic ending
-    // UPDATED: Smoothly transition them away via visibility classes rather than breaking animations
     hamburgerBtn.classList.remove('visible');
     subtitleBtn.classList.remove('visible');
     progressContainer.style.display = 'none';
@@ -706,7 +743,7 @@ function showEndScreen() {
 }
 
 function showChoices(choicesArray, questionText) {
-    choicesOverlay.innerHTML = ''; 
+    choicesOverlay.innerHTML = '';
     const nodeData = storyManifest[currentNodeId]; // Grab current node info
 
     // NEW HELPER: Encapsulates building the title and buttons so we can delay them
@@ -731,13 +768,16 @@ function showChoices(choicesArray, questionText) {
 
             btn.addEventListener('click', () => {
                 // Stop the timer if they click in time!
-                if(countdownTimerInterval) {
+                if (countdownTimerInterval) {
                     clearInterval(countdownTimerInterval);
                     timerSound.loop = false;
                     timerSound.pause();
                 }
-                timerContainer.style.display = 'none'; 
-
+                timerContainer.style.display = 'none';
+                
+                // NEW: Triggers point popups and bar tracking bounce or damage shake animations
+                triggerScoreEffect(choice.valueChange);
+                
                 currentScore += choice.valueChange;
                 if (currentScore < 0) {
                     currentScore = 0;
@@ -759,43 +799,43 @@ function showChoices(choicesArray, questionText) {
         const radius = timerCircle.r.baseVal.value;
         const circumference = radius * 2 * Math.PI;
         timerCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-        
+
         // Reset visuals
         timerCircle.style.strokeDashoffset = 0;
         timerCircle.style.stroke = "#0f0"; // Start Green
         timerContainer.style.display = 'flex';
-        
+
         // Apply cinematic slide-down intro animation classes
         timerContainer.classList.remove('settled');
         timerContainer.classList.add('intro-anim');
-        
+
         // Append timerContainer immediately so it displays during intro animation
         choicesOverlay.appendChild(timerContainer);
         choicesOverlay.classList.add('active');
-        
+
         // ADJUSTED: Let the timer flash, and spawn the questions/buttons ONLY when it settles!
         setTimeout(() => {
             timerContainer.classList.remove('intro-anim');
             timerContainer.classList.add('settled');
-            
+
             // Spawns question text and answers right as the clock hits the top bar position
-            renderContent(); 
+            renderContent();
         }, 1200);
-        
+
         // Reset and enable audio looping immediately
         timerSound.currentTime = 0;
-        timerSound.loop = true; 
+        timerSound.loop = true;
         timerSound.play().catch(err => console.warn("Audio blocked by browser:", err));
-        
+
         const totalMs = nodeData.timeLimit * 1000;
         const startTime = Date.now();
-        
-        if(countdownTimerInterval) clearInterval(countdownTimerInterval);
+
+        if (countdownTimerInterval) clearInterval(countdownTimerInterval);
 
         countdownTimerInterval = setInterval(() => {
             const elapsed = Date.now() - startTime;
             let timeLeft = Math.ceil((totalMs - elapsed) / 1000);
-            
+
             if (timeLeft < 0) timeLeft = 0;
             timerText.innerText = timeLeft;
 
@@ -809,13 +849,16 @@ function showChoices(choicesArray, questionText) {
 
             if (elapsed >= totalMs) {
                 clearInterval(countdownTimerInterval);
-                timerContainer.style.display = 'none'; 
-                
+                timerContainer.style.display = 'none';
+
                 timerSound.pause();
                 timerSound.loop = false;
-                
-                currentScore -= 1;
-                if(currentScore < 0) currentScore = 0;
+
+                // NEW: Triggers bubble popup notification for timeout point penalty
+                triggerScoreEffect(-100);
+
+                currentScore -= 100; // UPDATED: Corrected from -1 to -100 to match the 1000-point scale
+                if (currentScore < 0) currentScore = 0;
                 updateProgressBar();
                 playNode(nodeData.timeoutNode);
             }
@@ -836,36 +879,26 @@ checkSaveData();
 // --- KEYBOARD CONTROLS ---
 document.addEventListener('keydown', (event) => {
 
-    // NEW: Developer Menu Toggle (Press 'P')
+    // Developer Menu Toggle (Press 'P')
     if ((event.key === 'p' || event.key === 'P') && currentNodeId !== null) {
         devMenuOverlay.classList.toggle('active');
 
-        // If the menu was just opened and isn't authenticated yet, focus the input!
         if (devMenuOverlay.classList.contains('active') && !isDevAuthenticated) {
-            devPasscodeInput.value = ''; // Clear old attempts
+            devPasscodeInput.value = ''; 
             devAuthError.style.display = 'none';
-            // Slight delay ensures the CSS transition allows focus
             setTimeout(() => devPasscodeInput.focus(), 100);
         }
     }
 
-    // Only trigger if the key pressed was 'Escape' AND the story has actually started
     if (event.key === 'Escape' && currentNodeId !== null) {
-
-        // 1. If the menu is currently OPEN
         if (pauseMenuOverlay.classList.contains('active')) {
-
-            // Are they looking at the "Are you sure?" confirmation screen?
             if (menuConfirmPanel.classList.contains('active')) {
-                confirmNo.click(); // Escape cancels the confirmation
+                confirmNo.click(); 
             } else {
-                menuContinue.click(); // Escape closes the menu and resumes the game
+                menuContinue.click(); 
             }
-
-        }
-        // 2. If the menu is currently CLOSED
-        else {
-            hamburgerBtn.click(); // Escape opens the pause menu
+        } else {
+            hamburgerBtn.click(); 
         }
     }
 });
@@ -875,7 +908,6 @@ function preloadAndPlay(targetNodeId) {
     const chapterLoader = document.getElementById('chapter-loader-overlay');
     const loaderProgressBar = document.getElementById('loader-progress-bar');
 
-    // 1. Reset the bar to 0 and fade IN the loading screen
     loaderProgressBar.style.width = '0%';
     chapterLoader.classList.add('active');
 
@@ -890,59 +922,47 @@ function preloadAndPlay(targetNodeId) {
     const videoPath = `${getActiveFolder(actualNodeData)}1.mp4`;
     console.log(`⏳ [Preloader] Starting transition to: ${videoPath}`);
 
-    // --- PROMISE 1: Enforce a minimum display time & fake progress animation ---
     const minimumTimePromise = new Promise(resolve => {
         let fakeProgress = 0;
 
-        // Tick up the progress bar artificially
         const progressInterval = setInterval(() => {
-            fakeProgress += Math.random() * 15; // Jump by random chunks
-            if (fakeProgress > 90) fakeProgress = 90; // Hang at 90% if video is still buffering
+            fakeProgress += Math.random() * 15; 
+            if (fakeProgress > 90) fakeProgress = 90; 
             loaderProgressBar.style.width = `${fakeProgress}%`;
         }, 200);
 
-        // Strict 1.5-second minimum timer
         setTimeout(() => {
             clearInterval(progressInterval);
             resolve();
         }, 1500);
     });
 
-    // --- PROMISE 2: The actual video buffering ---
     const videoLoadPromise = new Promise((resolve) => {
         const preloaderVideo = document.createElement('video');
         preloaderVideo.preload = 'auto';
         preloaderVideo.src = videoPath;
 
-        // Resolve when the browser confirms it can play the video smoothly
         preloaderVideo.oncanplaythrough = () => resolve();
-
-        // Resolve anyway on error so we don't soft-lock the player on a loading screen
         preloaderVideo.onerror = () => resolve();
 
         preloaderVideo.load();
     });
 
-    // --- THE MAGIC: Wait for BOTH promises to finish ---
     Promise.all([minimumTimePromise, videoLoadPromise]).then(() => {
-        // Snap the bar to 100%
         loaderProgressBar.style.width = '100%';
 
-        // Wait 400ms for the user to see it hit 100%, then fade out and play
         setTimeout(() => {
             chapterLoader.classList.remove('active');
 
-            // Wait for the fade out transition to finish before starting the video
             setTimeout(() => {
                 playNode(actualNodeToPlay);
-            }, 600); // 600ms matches the CSS transition time
+            }, 600); 
 
         }, 400);
     });
 }
 
 // --- OUTCOME SCREEN LOGIC ---
-// This was the missing event listener!
 outcomeNextBtn.addEventListener('click', () => {
     outcomeOverlay.classList.remove('active');
     preloadAndPlay(targetNodeAfterOutcome);
@@ -958,48 +978,43 @@ function checkDevPasscode() {
     if (devPasscodeInput.value === 'bgDev') {
         isDevAuthenticated = true;
         devAuthContainer.style.display = 'none';
-        devContent.style.display = 'flex'; // Reveal the secret buttons!
+        devContent.style.display = 'flex'; 
     } else {
-        // Wrong password!
         devAuthError.style.display = 'block';
         devPasscodeInput.value = '';
         devPasscodeInput.focus();
     }
 }
 
-// Check password if they hit 'Enter' while typing
 devPasscodeInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         checkDevPasscode();
     }
 });
 
-// Close button on the Auth screen
 devAuthCloseBtn.addEventListener('click', () => {
     devMenuOverlay.classList.remove('active');
 });
 
 devBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        // Find out which chapter this button is supposed to skip to
         const targetNode = e.target.getAttribute('data-node');
 
+        // UPDATED: Fixed developer skip scores to correctly align with the 1000 point scale framework
         if (targetNode === 'intro') currentScore = 0;
-        if (targetNode === 'chap2') currentScore = 1.6;
-        if (targetNode === 'chap3') currentScore = 3.2;
-        if (targetNode === 'chap4') currentScore = 4.8;
-        if (targetNode === 'chap5') currentScore = 6.4;
-        if (targetNode === 'chap6') currentScore = 8.0; // Hits exactly 80%!
-        if (targetNode === 'chap7') currentScore = 10.0; // Perfect score
+        if (targetNode === 'chap2') currentScore = 160;
+        if (targetNode === 'chap3') currentScore = 320;
+        if (targetNode === 'chap4') currentScore = 480;
+        if (targetNode === 'chap5') currentScore = 640;
+        if (targetNode === 'chap6') currentScore = 800; // Enters Gauntlet with exactly 800 points
+        if (targetNode === 'chap7') currentScore = 1000;
 
         updateProgressBar();
 
-        // Hide any menus that might be open
         pauseMenuOverlay.classList.remove('active');
         choicesOverlay.classList.remove('active');
         devMenuOverlay.classList.remove('active');
 
-        // Jump straight to the selected chapter!
         preloadAndPlay(targetNode);
     });
 });

@@ -1,18 +1,23 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #000; /* Deep black to blend with the video edges */
-    overflow: hidden; /* Prevents any scrolling */
+    background-color: #000;
+    /* Deep black to blend with the video edges */
+    overflow: hidden;
+    /* Prevents any scrolling */
     font-family: sans-serif;
 }
 
 #video-container {
     position: relative;
-    width: 100vw; 
-    height: 100vh;   /* Fallback for older legacy browsers */
-    height: 100dvh;  /* NEW: Dynamic Viewport Height prevents clipping beneath browser bars */
+    width: 100vw;
+    height: 100vh;
+    /* Fallback for older legacy browsers */
+    height: 100dvh;
+    /* NEW: Dynamic Viewport Height prevents clipping beneath browser bars */
     background-color: #000;
     display: flex;
     justify-content: center;
@@ -23,9 +28,10 @@ body, html {
 video {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Keeps the 16:9 ratio intact */
+    object-fit: contain;
+    /* Keeps the 16:9 ratio intact */
     position: relative;
-    z-index: 1; 
+    z-index: 1;
 }
 
 #start-btn {
@@ -37,13 +43,15 @@ video {
     font-size: 1.3rem;
     font-weight: bold;
     color: white;
-    background-color: #006747; /* NEW: Bearcat Green */
-    border: 2px solid white;    /* NEW: Crisp white border matching theme */
+    background-color: #006747;
+    /* NEW: Bearcat Green */
+    border: 2px solid white;
+    /* NEW: Crisp white border matching theme */
     border-radius: 8px;
     cursor: pointer;
     z-index: 40;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-    
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+
     /* NEW: Default to hidden so it fades in after 3 seconds */
     opacity: 0;
     visibility: hidden;
@@ -58,7 +66,8 @@ video {
 }
 
 #start-btn:hover {
-    background-color: #004b33; /* Dark Bearcat Green fallback */
+    background-color: #004b33;
+    /* Dark Bearcat Green fallback */
     transform: translate(-50%, -50%) scale(1.05);
 }
 
@@ -74,23 +83,25 @@ video {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column; /* NEW: Stacks the title above the buttons */
+    flex-direction: column;
+    /* NEW: Stacks the title above the buttons */
     justify-content: center;
     align-items: center;
-    gap: 40px; /* NEW: Adds breathing room between the title and buttons */
-    background: rgba(0, 0, 0, 0.4); 
+    gap: 40px;
+    /* NEW: Adds breathing room between the title and buttons */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 20;
-    
+
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; 
+    pointer-events: none;
     transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
 
 #choices-overlay.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; 
+    pointer-events: auto;
 }
 
 /* NEW: Styling for the question text */
@@ -99,7 +110,8 @@ video {
     font-size: 5vmin;
     margin: 0;
     text-align: center;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9); /* Drop shadow ensures readability against bright videos */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    /* Drop shadow ensures readability against bright videos */
     padding: 0 20px;
 }
 
@@ -107,8 +119,10 @@ video {
 #choice-buttons-container {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap; /* NEW: Lets buttons wrap to a second line if needed */
-    gap: 20px;       /* NEW: Adds space between the buttons when they wrap */
+    flex-wrap: wrap;
+    /* NEW: Lets buttons wrap to a second line if needed */
+    gap: 20px;
+    /* NEW: Adds space between the buttons when they wrap */
     width: 100%;
 }
 
@@ -136,28 +150,185 @@ video {
 }
 
 /* --- PROGRESSION BAR STYLES --- */
+/* --- UPDATED: POINTS-BASED SCORE PROGRESSION SYSTEM --- */
 #progress-container {
     position: absolute;
-    top: 5%; 
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
-    width: 40%; 
-    max-width: 400px;
-    height: 12px;
-    background-color: rgba(85, 85, 85, 0.6); 
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    z-index: 30; 
-    overflow: hidden; 
-    display: none; 
-    backdrop-filter: blur(2px);
+    width: 65%;
+    /* Extended width layout to fit custom boundary labels comfortably */
+    max-width: 550px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    z-index: 30;
+    overflow: visible;
+    /* Crucial so floating score bubbles don't clip */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Enforces flex layout, overriding old inline JS block style injections safely */
+#progress-container.visible {
+    display: flex !important;
+}
+
+.score-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px black, 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#progress-track-wrapper {
+    position: relative;
+    flex: 1;
+    height: 24px;
+    background-color: rgba(30, 30, 30, 0.75);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    
+    /* NEW: Smoothly fade the border color back to normal over 3 seconds */
+    transition: border-color 3s ease; 
 }
 
 #progress-bar {
     height: 100%;
-    width: 0%; 
-    background-color: rgb(0, 50, 0); 
-    transition: width 0.6s ease-out, background-color 0.6s ease-out;
+    width: 0%;
+    background-color: rgb(0, 50, 0);
+    /* Slow, fluid creeping transition imitating classic game visual bar trackers */
+    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.8s ease;
+}
+
+#score-digital-counter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: monospace;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* --- SCORE INDICATOR FLOATING BUBBLE --- */
+#score-floating-bubble {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.6rem;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 35;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+#score-floating-bubble.pop-active {
+    animation: floatUpAndFade 1.2s ease-out forwards;
+}
+
+#score-floating-bubble.plus {
+    color: #22ff22;
+    /* Vibrant arcade green color */
+}
+
+#score-floating-bubble.minus {
+    color: #ff2222;
+    /* Vibrant damage red color */
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(15px) scale(0.4);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.3);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-15px) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-35px) scale(0.7);
+    }
+}
+
+/* --- POKEMON STYLE ACTION RESPONSE FEEDBACK SHAKES --- */
+.good-choice-shake #progress-track-wrapper {
+    animation: barBounceUp 0.5s ease-out;
+}
+
+.bad-choice-shake #progress-track-wrapper {
+    animation: violentVibrate 0.4s linear;
+    border-color: #ff2222 !important; /* Locks solid red instantly */
+    transition: none; /* Disables transitions temporarily so it snaps red immediately */
+}
+
+@keyframes barBounceUp {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-8px) scaleY(1.1);
+    }
+
+    70% {
+        transform: translateY(-2px) scaleY(0.95);
+    }
+}
+
+@keyframes violentVibrate {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    15% {
+        transform: translateX(-6px);
+    }
+
+    30% {
+        transform: translateX(6px);
+    }
+
+    45% {
+        transform: translateX(-4px);
+    }
+
+    60% {
+        transform: translateX(4px);
+    }
+
+    75% {
+        transform: translateX(-2px);
+    }
+
+    90% {
+        transform: translateX(2px);
+    }
 }
 
 #subtitle-btn {
@@ -174,7 +345,7 @@ video {
     cursor: pointer;
     z-index: 30;
     backdrop-filter: blur(4px);
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -209,13 +380,16 @@ video {
 /* --- RESUME OVERLAY STYLES --- */
 #resume-overlay {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Very dark backdrop */
-    z-index: 50; /* Highest z-index to sit on top of everything */
-    display: none; /* Hidden by default */
+    background: rgba(0, 0, 0, 0.85);
+    /* Very dark backdrop */
+    z-index: 50;
+    /* Highest z-index to sit on top of everything */
+    display: none;
+    /* Hidden by default */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -267,15 +441,15 @@ video {
 #hamburger-btn {
     position: absolute;
     top: 20px;
-    left: 20px; 
+    left: 20px;
     background: rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.6); 
+    border: 2px solid rgba(255, 255, 255, 0.6);
     border-radius: 8px;
-    padding: 8px; 
+    padding: 8px;
     cursor: pointer;
     z-index: 30;
     backdrop-filter: blur(4px);
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -299,26 +473,28 @@ video {
 /* --- PAUSE MENU OVERLAY --- */
 #pause-menu-overlay {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.80); 
-    z-index: 60; 
+    background: rgba(0, 0, 0, 0.80);
+    z-index: 60;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     opacity: 0;
     visibility: hidden;
-    pointer-events: none; /* NEW: Completely disables hover/clicks */
+    pointer-events: none;
+    /* NEW: Completely disables hover/clicks */
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 #pause-menu-overlay.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; /* NEW: Re-enables interaction when active */
+    pointer-events: auto;
+    /* NEW: Re-enables interaction when active */
 }
 
 /* --- MENU PANELS & BUTTONS --- */
@@ -328,10 +504,12 @@ video {
     align-items: center;
     gap: 20px;
     position: absolute;
-    
+
     opacity: 0;
-    visibility: hidden; /* Ensures inactive panels don't block active ones */
-    pointer-events: none; /* NEW: Completely disables hover/clicks */
+    visibility: hidden;
+    /* Ensures inactive panels don't block active ones */
+    pointer-events: none;
+    /* NEW: Completely disables hover/clicks */
     transform: translateY(20px);
     transition: all 0.3s ease-in-out;
 }
@@ -339,7 +517,7 @@ video {
 #pause-menu-overlay.active .menu-panel.active {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto; 
+    pointer-events: auto;
     transform: translateY(0);
 }
 
@@ -381,7 +559,7 @@ video {
 }
 
 .confirm-yes-btn {
-    background: #a00; 
+    background: #a00;
     border-color: #f00;
 }
 
@@ -397,14 +575,16 @@ video {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.95); /* Very dark background to block out the video */
-    z-index: 70; /* Highest layer */
+    background: rgba(0, 0, 0, 0.95);
+    /* Very dark background to block out the video */
+    z-index: 70;
+    /* Highest layer */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -436,14 +616,16 @@ video {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 40, 0.95); /* Dark blue tint */
-    z-index: 100; /* Highest layer */
+    background: rgba(0, 0, 40, 0.95);
+    /* Dark blue tint */
+    z-index: 100;
+    /* Highest layer */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -457,7 +639,8 @@ video {
 }
 
 #dev-menu-overlay h2 {
-    color: #0f0; /* Hacker green */
+    color: #0f0;
+    /* Hacker green */
     font-family: monospace;
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -499,13 +682,17 @@ video {
 /* --- OUTCOME FEEDBACK SCREEN --- */
 #outcome-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent so video frame is visible */
-    z-index: 25; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent so video frame is visible */
+    z-index: 25;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -540,8 +727,13 @@ video {
 }
 
 /* Dynamic colors injected via JS */
-#outcome-title.good { color: #0f0; }
-#outcome-title.bad { color: #f00; }
+#outcome-title.good {
+    color: #0f0;
+}
+
+#outcome-title.bad {
+    color: #f00;
+}
 
 #outcome-text {
     font-size: 1.2rem;
@@ -553,26 +745,33 @@ video {
 /* --- CHAPTER LOADER SCREEN --- */
 #chapter-loader-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     /* Add your custom loading background image here: */
     background: url('images/loading-bg.jpg') center/cover;
     background-color: #111;
-    z-index: 90; 
+    z-index: 90;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     /* Smooth 0.6s fade in and out */
-    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out; 
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
 }
 
 #chapter-loader-overlay::before {
     content: '';
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
 }
 
 #chapter-loader-overlay.active {
@@ -603,14 +802,16 @@ video {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #loader-progress-bar {
     height: 100%;
     width: 0%;
-    background-color: var(--nw-green, #006747); /* Uses your Bearcat green */
-    transition: width 0.3s ease-out; /* Smoothly animates the width changes */
+    background-color: var(--nw-green, #006747);
+    /* Uses your Bearcat green */
+    transition: width 0.3s ease-out;
+    /* Smoothly animates the width changes */
 }
 
 /* --- CIRCULAR TIMER --- */
@@ -618,7 +819,7 @@ video {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    display: none; 
+    display: none;
     align-items: center;
     justify-content: center;
     width: 80px;
@@ -636,7 +837,8 @@ video {
 
 /* State 2: Smoothly slides up under the progress bar and minimizes */
 #timer-container.settled {
-    top: calc(5% + 20px); /* Placed perfectly below the top progress bar position */
+    /* UPDATED: Changed from +20px to +45px to give the taller arcade bar plenty of clearance */
+    top: calc(5% + 45px); 
     transform: translateX(-50%) scale(0.9);
 }
 
@@ -644,7 +846,7 @@ video {
     transition: stroke-dashoffset 0.05s linear, stroke 0.3s ease;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
-    stroke: #0f0; 
+    stroke: #0f0;
 }
 
 #timer-text {
@@ -652,7 +854,7 @@ video {
     font-size: 2rem;
     font-weight: bold;
     color: white;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     font-family: monospace;
 }
 
@@ -687,6 +889,7 @@ video {
         opacity: 0;
         transform: translateY(15px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -694,28 +897,35 @@ video {
 }
 
 /* Automatically handles smooth entry transitions when elements are added to DOM */
-#choice-title, #choice-buttons-container {
+#choice-title,
+#choice-buttons-container {
     animation: choiceContentFadeIn 0.4s ease-out forwards;
 }
 
 /* --- OVERLAY TUTORIAL TOOLTIPS --- */
-.menu-tooltip, .cc-tooltip, .progress-tooltip {
+.menu-tooltip,
+.cc-tooltip,
+.progress-tooltip {
     position: absolute;
-    background: rgba(0, 75, 51, 0.98); /* Rich thematic dark green */
+    background: rgba(0, 75, 51, 0.98);
+    /* Rich thematic dark green */
     color: white;
-    padding: 12px 20px; /* INCREASED: Generous readable padding */
-    border-radius: 8px; /* Smooth professional rounded edges */
-    font-size: 1.05rem; /* INCREASED: Clear, sharp typography scale */
+    padding: 12px 20px;
+    /* INCREASED: Generous readable padding */
+    border-radius: 8px;
+    /* Smooth professional rounded edges */
+    font-size: 1.05rem;
+    /* INCREASED: Clear, sharp typography scale */
     white-space: nowrap;
     z-index: 100;
     pointer-events: none;
-    
+
     /* Default hidden states for onboarding entry animations */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
     font-family: sans-serif;
     font-weight: normal;
     text-transform: none;
@@ -730,69 +940,97 @@ video {
     visibility: visible;
 }
 
-.menu-tooltip { 
-    left: 0; 
-    top: 68px; /* INCREASED: Pushed lower beneath button frame */
+.menu-tooltip {
+    left: 0;
+    top: 68px;
+    /* INCREASED: Pushed lower beneath button frame */
 }
-.cc-tooltip { 
-    right: 0; 
-    top: 68px; /* INCREASED: Pushed lower beneath button frame */
+
+.cc-tooltip {
+    right: 0;
+    top: 68px;
+    /* INCREASED: Pushed lower beneath button frame */
 }
 
 .progress-tooltip {
-    top: calc(5% + 28px); /* NEW: Positioned comfortably under the top bar line with air margin */
+    top: calc(5% + 38px);
+    /* Lowered slightly to clear the taller point tracker bar module */
     left: 50%;
     transform: translateX(-50%);
 }
 
 /* Graceful dismissal transitions handled via structural engine code resets */
-.menu-tooltip.fade-out, .cc-tooltip.fade-out, .progress-tooltip.fade-out {
+.menu-tooltip.fade-out,
+.cc-tooltip.fade-out,
+.progress-tooltip.fade-out {
     opacity: 0 !important;
     visibility: hidden !important;
 }
 
 /* --- RESPONSIVE MOBILE TWEAKS FOR TOOLTIPS --- */
 @media (max-width: 768px) {
-    .menu-tooltip, .cc-tooltip, .progress-tooltip {
+
+    .menu-tooltip,
+    .cc-tooltip,
+    .progress-tooltip {
         /* Allow text to wrap to multiple lines to prevent long single-line collisions */
-        white-space: normal; 
-        font-size: 0.9rem; /* Scale down typography slightly for mobile viewports */
-        padding: 10px 14px; /* Slightly tighter padding bounds for smaller screens */
+        white-space: normal;
+        font-size: 0.9rem;
+        /* Scale down typography slightly for mobile viewports */
+        padding: 10px 14px;
+        /* Slightly tighter padding bounds for smaller screens */
         line-height: 1.3;
     }
 
-    .menu-tooltip { 
-        left: 0; 
-        top: 65px; 
-        max-width: 110px; /* Restricts width so it stays on the left third of the screen */
+    .menu-tooltip {
+        left: 0;
+        top: 65px;
+        max-width: 110px;
+        /* Restricts width so it stays on the left third of the screen */
         text-align: left;
     }
 
-    .cc-tooltip { 
-        right: 0; 
-        top: 65px; 
-        max-width: 110px; /* Restricts width so it stays on the right third of the screen */
+    .cc-tooltip {
+        right: 0;
+        top: 65px;
+        max-width: 110px;
+        /* Restricts width so it stays on the right third of the screen */
         text-align: right;
     }
 
     .progress-tooltip {
-        top: calc(5% + 32px); /* Comfortably separates vertical alignment under the bar track */
-        max-width: 150px;     /* Restricts center width to fit exactly in the layout gap */
+        top: calc(5% + 32px);
+        /* Comfortably separates vertical alignment under the bar track */
+        max-width: 150px;
+        /* Restricts center width to fit exactly in the layout gap */
         text-align: center;
     }
 }
 
 /* --- LANDSCAPE MOBILE OPTIMIZATIONS --- */
 @media (orientation: landscape) and (max-height: 500px) {
+
     /* Scale down progress bar to prevent cluttering the top frame area */
     #progress-container {
         top: 3%;
-        max-width: 280px;
-        height: 8px;
+        max-width: 380px;
+    }
+
+    #progress-track-wrapper {
+        height: 18px;
+    }
+
+    #score-digital-counter {
+        font-size: 0.8rem;
+    }
+
+    .score-label {
+        font-size: 0.85rem;
     }
 
     /* Keep the floating buttons sleek and tucked into the corners */
-    #hamburger-btn, #subtitle-btn {
+    #hamburger-btn,
+    #subtitle-btn {
         top: 10px;
         padding: 6px;
     }
@@ -810,5 +1048,17 @@ video {
 
     #choice-title {
         font-size: 4.5vmin;
+    }
+}
+
+/* --- ARCADE DETONATION BORDER COUNTDOWN FADE --- */
+@keyframes redBorderFade {
+    /* 0% to 40% represents the first 2 seconds (2s / 5s total = 40%) where it holds solid red */
+    0%, 40% {
+        border-color: #ff2222;
+    }
+    /* 40% to 100% represents the remaining 3 seconds where it smoothly transitions back to normal transparent white */
+    100% {
+        border-color: rgba(255, 255, 255, 0.4);
     }
 }
