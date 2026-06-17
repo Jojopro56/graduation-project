@@ -5,8 +5,8 @@ const storyManifest = {
         folder: "videos/1/",
         question: "Where should Mikey throw the detergent bin?",
         choices: [
-            { text: "Find Another Bin", valueChange: 160, nextNode: "1g" },
-            { text: "Throw in Trash Can", valueChange: -320, nextNode: "1b" }
+            { text: "Another Bin", valueChange: 160, nextNode: "1g" },
+            { text: "Trash Can", valueChange: -320, nextNode: "1b" }
         ]
     },
     "1g": {
@@ -27,8 +27,8 @@ const storyManifest = {
         folder: "videos/2/",
         question: "Where should Mikey throw the cup?",
         choices: [
-            { text: "Toss in Plastic Bin", valueChange: -320, nextNode: "2b" },
-            { text: "Toss in Landfill Bin", valueChange: 160, nextNode: "2g" }
+            { text: "Plastic Bin", valueChange: -320, nextNode: "2b" },
+            { text: "Landfill Bin", valueChange: 160, nextNode: "2g" }
         ]
     },
     "2g": {
@@ -49,8 +49,8 @@ const storyManifest = {
         folder: "videos/3/",
         question: "Where should Mikey throw the test away?",
         choices: [
-            { text: "Toss in Trash Can", valueChange: -320, nextNode: "3b" },
-            { text: "Find Hold Onto the Test", valueChange: 160, nextNode: "3g" }
+            { text: "Trash Can", valueChange: -320, nextNode: "3b" },
+            { text: "Hold Onto the Test", valueChange: 160, nextNode: "3g" }
         ]
     },
     "3g": {
