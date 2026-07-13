@@ -1,20 +1,221 @@
 // --- 1. THE STORY MANIFEST ---
 const storyManifest = {
+    // --- CHAPTER 1 ---
     "intro": {
-        folder: "videos/test/", 
+        folder: "videos/1/",
+        question: "Where should Mikey throw the detergent bin?",
         choices: [
-            { text: "Choice A", valueChange: -2, nextNode: "testA" },
-            { text: "Choice B", valueChange: 1, nextNode: "testB" }
+            { text: "Another Bin", valueChange: 160, nextNode: "1g" },
+            { text: "Trash Can", valueChange: -320, nextNode: "1b" }
         ]
     },
-    "testA": {
-        folder: "videos/test/sequenceTest-choiceA/",
-        choices: []
+    "1g": {
+        folder: "videos/1/1g/",
+        autoNext: "chap2",
+        outcomeTitle: "Good Job!",
+        outcomeText: "You looked for another bin. Detergent bottles are recyclable and should never go in the landfill."
     },
-    "testB": {
-        folder: "videos/test/sequenceTest-choiceB/",
-        choices: []
-    }
+    "1b": {
+        folder: "videos/1/1b/",
+        autoNext: "chap2",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "Detergent bottles are highly recyclable plastic. Throwing them in the trash fills up landfills unnecessarily."
+    },
+
+    // --- CHAPTER 2 ---
+    "chap2": {
+        folder: "videos/2/",
+        question: "Where should Mikey throw the cup?",
+        choices: [
+            { text: "Plastic Bin", valueChange: -320, nextNode: "2b" },
+            { text: "Landfill Bin", valueChange: 160, nextNode: "2g" }
+        ]
+    },
+    "2g": {
+        folder: "videos/2/2g/",
+        autoNext: "chap3",
+        outcomeTitle: "Good Job!",
+        outcomeText: "You successfully managed to throw the cup away."
+    },
+    "2b": {
+        folder: "videos/2/2b/",
+        autoNext: "chap3",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "Empty your cup at all times, and throw it in the landfill as it's not recyclable!"
+    },
+
+    // --- CHAPTER 3 ---
+    "chap3": {
+        folder: "videos/3/",
+        question: "Where should Mikey throw the test away?",
+        choices: [
+            { text: "Trash Can", valueChange: -320, nextNode: "3b" },
+            { text: "Hold Onto the Test", valueChange: 160, nextNode: "3g" }
+        ]
+    },
+    "3g": {
+        folder: "videos/3/3g/",
+        autoNext: "chap4",
+        outcomeTitle: "Good Job!",
+        outcomeText: "The paper test can now successfully be recycled."
+    },
+    "3b": {
+        folder: "videos/3/3b/",
+        autoNext: "chap4",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "A waste of paper! It's better to throw the test in a paper bin instead of a standard trash can so the paper can be recycled."
+    },
+
+    // --- CHAPTER 4 ---
+    "chap4": {
+        folder: "videos/4/",
+        question: "What should Mikey do with the pizza box?",
+        choices: [
+            { text: "Tear Pizza Box In Half and Toss", valueChange: 160, nextNode: "4g" },
+            { text: "Toss Entire Box in Paper Bin", valueChange: -320, nextNode: "4b" }
+        ]
+    },
+    "4g": {
+        folder: "videos/4/4g/",
+        autoNext: "chap5",
+        outcomeTitle: "Good Job!",
+        outcomeText: "Greasy pizza boxes still contain clean cardboard. Great job on separating it!"
+    },
+    "4b": {
+        folder: "videos/4/4b/",
+        autoNext: "chap5",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "The pizza box was greasy, and contaminates the clean paper that's already in the bin."
+    },
+
+    // --- CHAPTER 5 ---
+    "chap5": {
+        folder: "videos/5/",
+        question: "Where should Mikey Throw the Empty Bottle?",
+        choices: [
+            { text: "Landfill Bin", valueChange: -320, nextNode: "5b" },
+            { text: "Plastic Bin", valueChange: 160, nextNode: "5g" }
+        ]
+    },
+    "5g": {
+        folder: "videos/5/5g/",
+        autoNext: "chap6",
+        outcomeTitle: "Good Job!",
+        outcomeText: "Plastic bottles and jugs go into the plastic bin, nothing else."
+    },
+    "5b": {
+        folder: "videos/5/5b/",
+        autoNext: "chap6",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "Plastic bottles and jugs go into the plastic bin, it's a waste to throw it into the landfill bin!"
+    },
+
+    // --- CHAPTER 6 (THE GAUNTLET) ---
+    "chap6": {
+        folder: "videos/6/",
+        question: "Where should Mikey throw his FRY BOX away?",
+        timeLimit: 10,
+        timeoutNode: "6b_time",
+        choices: [
+            { text: "Paper Bin", valueChange: -100, nextNode: "6b_1" },
+            { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_1" },
+            { text: "Plastic Bin", valueChange: -100, nextNode: "6b_1" },
+            { text: "Landfill Bin", valueChange: 50, nextNode: "6c2" }
+        ]
+    },
+    "6c2": {
+        folder: "videos/6/6c2/",
+        question: "Where should Mikey throw his CLEAN PAPER BAG away?",
+        timeLimit: 10,
+        timeoutNode: "6b_time",
+        choices: [
+            { text: "Paper Bin", valueChange: 50, nextNode: "6c3" },
+            { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_2" },
+            { text: "Plastic Bin", valueChange: -100, nextNode: "6b_2" },
+            { text: "Landfill Bin", valueChange: -100, nextNode: "6b_2" }
+        ]
+    },
+    "6c3": {
+        folder: "videos/6/6c3/",
+        question: "Where should Mikey throw his SODA CAN away?",
+        timeLimit: 10,
+        timeoutNode: "6b_time",
+        choices: [
+            { text: "Paper Bin", valueChange: -100, nextNode: "6b_3" },
+            { text: "Metal Cans Bin", valueChange: 50, nextNode: "6c4" },
+            { text: "Plastic Bin", valueChange: -100, nextNode: "6b_3" },
+            { text: "Landfill Bin", valueChange: -100, nextNode: "6b_3" }
+        ]
+    },
+    "6c4": {
+        folder: "videos/6/6c4/",
+        question: "Where should Mikey throw his PLASTIC BOTTLE away?",
+        timeLimit: 10,
+        timeoutNode: "6b_time",
+        choices: [
+            { text: "Paper Bin", valueChange: -100, nextNode: "6b_4" },
+            { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_4" },
+            { text: "Plastic Bin", valueChange: 50, nextNode: "6g" },
+            { text: "Landfill Bin", valueChange: -100, nextNode: "6b_4" }
+        ]
+    },
+
+    // --- CHAPTER 6 ENDINGS ---
+    "6g": {
+        folder: "videos/6/6g/",
+        autoNext: "chap7",
+        outcomeTitle: "Good Job!",
+        outcomeText: "You successfully sorted all the items into their proper bins!"
+    },
+    "6b_time": {
+        folder: "videos/6/6b/",
+        autoNext: "chap7",
+        outcomeTitle: "Time's Up!",
+        outcomeText: "Your time ran out and Mikey got nervous, be quicker next time!"
+    },
+    "6b_1": {
+        folder: "videos/6/6b/",
+        autoNext: "chap7",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "A Fry Box gets greasy because of the fries. Goes into landfill as it contaminates clean paper!"
+    },
+    "6b_2": {
+        folder: "videos/6/6b/",
+        autoNext: "chap7",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "The paper bag is clean enough to go into the paper recycling bin!"
+    },
+    "6b_3": {
+        folder: "videos/6/6b/",
+        autoNext: "chap7",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "Empty metal cans go in the metal cans bin!"
+    },
+    "6b_4": {
+        folder: "videos/6/6b/",
+        autoNext: "chap7",
+        outcomeTitle: "Wrong Answer!",
+        outcomeText: "Empty plastic bottles go in the plastic bin!"
+    },
+
+    // --- CHAPTER 7 (THE SCORE ROUTER) ---
+    "chap7": {
+        isRouter: true,
+        routeBasedOnScore: function (score) {
+            if (score >= 990) {
+                return "7p"; // Perfect Pass Score (1000 points)
+            } else if (score >= 650) {
+                return "7g"; // Normal Passing Score threshold matching original metrics balance 
+            } else {
+                return "7b"; // Bad Score failure path
+            }
+        }
+    },
+
+    // --- FINAL ENDINGS ---
+    "7p": { folder: "videos/7/7p/" },
+    "7g": { folder: "videos/7/7g/" },
+    "7b": { folder: "videos/7/7b/" }
 };
 
 // --- 2. PLAYER VARIABLES ---
@@ -23,7 +224,7 @@ const startBtn = document.getElementById('start-btn');
 const choicesOverlay = document.getElementById('choices-overlay');
 const progressContainer = document.getElementById('progress-container');
 const progressBar = document.getElementById('progress-bar');
-const subtitleBtn = document.getElementById('subtitle-btn'); 
+const subtitleBtn = document.getElementById('subtitle-btn');
 
 // NEW: Resume variables
 const resumeOverlay = document.getElementById('resume-overlay');
@@ -32,9 +233,9 @@ const resumeNo = document.getElementById('resume-no');
 
 let currentScore = 0;
 let currentNodeId = null;
-let currentSequenceIndex = 1; 
-let subtitlesEnabled = false; 
-const MAX_SCORE = 6; 
+let currentSequenceIndex = 1;
+let subtitlesEnabled = false;
+const MAX_SCORE = 1000; // UPDATED: Changed from 10 to a solid 1000 base points target
 
 // NEW: Pause Menu Variables
 const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -51,12 +252,92 @@ const confirmText = document.getElementById('confirm-text');
 
 let pendingConfirmAction = null; // Tracks what the user is confirming (restart or mainmenu)
 
-// --- 3. SAVE STATE LOGIC (NEW) ---
+// NEW: End Screen Variables
+const endOverlay = document.getElementById('end-overlay');
+const endMainMenuBtn = document.getElementById('end-mainmenu');
+
+// NEW: Developer Menu Variables
+const devMenuOverlay = document.getElementById('dev-menu-overlay');
+const devCloseBtn = document.getElementById('dev-close-btn');
+const devBtns = document.querySelectorAll('.dev-btn');
+
+// NEW: Developer Menu Auth Variables
+const devAuthContainer = document.getElementById('dev-auth-container');
+const devContent = document.getElementById('dev-content');
+const devPasscodeInput = document.getElementById('dev-passcode-input');
+const devAuthError = document.getElementById('dev-auth-error');
+const devAuthCloseBtn = document.getElementById('dev-auth-close-btn');
+let isDevAuthenticated = false; // Tracks if they already unlocked it this session
+
+// NEW: Outcome & Preloader Variables
+const outcomeOverlay = document.getElementById('outcome-overlay');
+const outcomeTitle = document.getElementById('outcome-title');
+const outcomeText = document.getElementById('outcome-text');
+const outcomeNextBtn = document.getElementById('outcome-next-btn');
+
+const chapterLoader = document.getElementById('chapter-loader-overlay');
+let targetNodeAfterOutcome = null; // Stores where we go after the outcome screen
+
+// NEW: Timer Variables
+const timerContainer = document.getElementById('timer-container');
+const timerText = document.getElementById('timer-text');
+const timerCircle = document.querySelector('.progress-ring__circle');
+let countdownTimerInterval = null; // Holds the active timer so we can kill it
+const timerSound = document.getElementById('timer-sound'); // NEW: The audio element
+
+// NEW: Progress Bar Simulation Variables & Functions
+let progressBarSimulationInterval = null;
+
+function startProgressBarSimulation() {
+    let growing = true;
+    let simulatedScore = 0;
+
+    if (progressBarSimulationInterval) clearInterval(progressBarSimulationInterval);
+
+    progressBarSimulationInterval = setInterval(() => {
+        if (growing) {
+            simulatedScore += 8; // Counts up in increments
+            if (simulatedScore >= MAX_SCORE) {
+                simulatedScore = MAX_SCORE;
+                growing = false;
+            }
+        } else {
+            simulatedScore -= 8;
+            if (simulatedScore <= 0) {
+                simulatedScore = 0;
+                growing = true;
+            }
+        }
+
+        const widthPercentage = (simulatedScore / MAX_SCORE) * 100;
+        const greenIntensity = Math.floor(50 + (205 * (simulatedScore / MAX_SCORE)));
+
+        progressBar.style.width = `${widthPercentage}%`;
+        progressBar.style.backgroundColor = `rgb(0, ${greenIntensity}, 0)`;
+
+        // Live feedback text counting update during start screen simulation
+        const scoreCounter = document.getElementById('score-digital-counter');
+        if (scoreCounter) scoreCounter.innerText = `${Math.floor(simulatedScore)} / ${MAX_SCORE}`;
+    }, 20);
+}
+
+function stopProgressBarSimulation() {
+    if (progressBarSimulationInterval) {
+        clearInterval(progressBarSimulationInterval);
+        progressBarSimulationInterval = null;
+    }
+}
+// Button listener to go back to the main menu
+endMainMenuBtn.addEventListener('click', () => {
+    window.location.href = "mainMenu.html";
+});
+
+// --- 3. SAVE STATE LOGIC ---
 
 // Saves the current state of the game to the browser's memory
 function saveProgress() {
     // We don't save if the story hasn't officially started yet
-    if (currentNodeId === null) return; 
+    if (currentNodeId === null) return;
 
     const saveData = {
         score: currentScore,
@@ -76,19 +357,71 @@ function clearProgress() {
 function checkSaveData() {
     const savedString = localStorage.getItem('storySaveData');
     if (savedString) {
-        // We have a save file! Hide the start button and show the Resume menu.
-        startBtn.style.display = 'none';
+        // We have a save file! Ensure start button stays hidden, pop open resume layout
+        startBtn.classList.remove('visible');
         resumeOverlay.style.display = 'flex';
+
+        // Immediately show navigation tools when continuing
+        subtitleBtn.classList.add('visible');
+        hamburgerBtn.classList.add('visible');
+
+        // Hide tooltips via class
+        const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+        tooltips.forEach(t => t.classList.add('fade-out'));
+
+        stopProgressBarSimulation();
+    } else {
+        // FRESH START SCREEN SEQUENCE:
+        // 1. Instantly reveal menu, CC utility modules, and progress container outline smoothly
+        setTimeout(() => {
+            subtitleBtn.classList.add('visible');
+            hamburgerBtn.classList.add('visible');
+
+            // Show progress bar container background track + reveal its onboarding tooltip
+            progressContainer.style.display = 'block';
+            progressContainer.classList.add('visible');
+
+            const progTooltip = document.querySelector('.progress-tooltip');
+            if (progTooltip) progTooltip.classList.add('visible');
+        }, 200);
+
+        // 2. Wait exactly 3 seconds, then reveal start button. Tooltips stay visible!
+        setTimeout(() => {
+            startBtn.classList.add('visible');
+        }, 3000);
+
+        // Start the progress bar simulation loop
+        startProgressBarSimulation();
     }
 }
 
 // --- 4. CORE ENGINE FUNCTIONS ---
 
 function getActiveFolder(nodeData) {
-    if (subtitlesEnabled) {
-        return nodeData.folder.slice(0, -1) + "SUB/";
+    let baseFolder = nodeData.folder;
+
+    // 1. BULLETPROOFING: Make sure there is always a trailing slash!
+    if (!baseFolder.endsWith('/')) {
+        baseFolder += '/';
     }
-    return nodeData.folder;
+
+    if (subtitlesEnabled) {
+        // Break the path apart
+        const parts = baseFolder.split('/');
+
+        for (let i = 0; i < parts.length; i++) {
+            // Only add "CC" if it is a real folder name (not empty, not "videos")
+            if (parts[i] !== "" && parts[i] !== "videos" && parts[i] !== "." && parts[i] !== "..") {
+                parts[i] = parts[i] + "CC";
+            }
+        }
+
+        const finalPath = parts.join('/');
+        console.log(`🎬 [CC Router] Translated path from '${baseFolder}' to '${finalPath}'`);
+        return finalPath;
+    }
+
+    return baseFolder;
 }
 
 function updateProgressBar() {
@@ -98,21 +431,69 @@ function updateProgressBar() {
 
     progressBar.style.width = `${widthPercentage}%`;
     progressBar.style.backgroundColor = `rgb(0, ${greenIntensity}, 0)`;
+
+    // Updates the center scoreboard counter numbers text
+    const scoreCounter = document.getElementById('score-digital-counter');
+    if (scoreCounter) {
+        scoreCounter.innerText = `${visualScore} / ${MAX_SCORE}`;
+    }
+}
+
+// NEW: Injects arcade popups (+/- points) and applies Pokémon-style shake triggers
+function triggerScoreEffect(amount) {
+    const bubble = document.getElementById('score-floating-bubble');
+    if (!bubble) return;
+
+    // Clear out old running animation states cleanly
+    progressContainer.classList.remove('good-choice-shake', 'bad-choice-shake');
+    bubble.classList.remove('pop-active', 'plus', 'minus');
+
+    // Force browser layout repaint reflow to allow immediate animation re-triggering
+    void progressContainer.offsetWidth;
+    void bubble.offsetWidth;
+
+    if (amount > 0) {
+        bubble.innerText = `+${amount}`;
+        bubble.classList.add('pop-active', 'plus');
+        progressContainer.classList.add('good-choice-shake');
+        
+        // NEW: Cleans up the bounce animation class once it finishes its jump
+        setTimeout(() => {
+            progressContainer.classList.remove('good-choice-shake');
+        }, 600);
+        
+    } else if (amount < 0) {
+        bubble.innerText = `${amount}`;
+        bubble.classList.add('pop-active', 'minus');
+        progressContainer.classList.add('bad-choice-shake');
+        
+        // NEW: Holds solid red for 2 seconds, then removes the class. 
+        // Once removed, the 3-second CSS transition kicks in to fade back to normal!
+        setTimeout(() => {
+            progressContainer.classList.remove('bad-choice-shake');
+        }, 2000);
+    }
 }
 
 // --- BUTTON LISTENERS ---
 
-// Replace your Start Button listener with this:
 startBtn.addEventListener('click', () => {
     console.log("1. Start button clicked!");
-    startBtn.style.display = 'none';
+    startBtn.classList.remove('visible'); // Smoothly hide the start button
     progressContainer.style.display = 'block';
-    subtitleBtn.style.display = 'block'; 
-    hamburgerBtn.style.display = 'block'; 
+
+    // Stop the progress bar looping simulation immediately
+    stopProgressBarSimulation();
+
+    // Clean up tooltip elements from DOM tree by fading them out smoothly
+    const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+    tooltips.forEach(t => {
+        t.classList.add('fade-out');
+    });
     console.log("2. UI elements revealed!");
-    
+
     updateProgressBar();
-    playNode("intro"); 
+    preloadAndPlay("intro");
 });
 
 // Resume button: Parse the save file and restore the variables
@@ -128,21 +509,48 @@ resumeYes.addEventListener('click', () => {
     // Restore UI states
     subtitleBtn.classList.toggle('active', subtitlesEnabled);
     updateProgressBar();
-    
+
     resumeOverlay.style.display = 'none';
     progressContainer.style.display = 'block';
-    subtitleBtn.style.display = 'block';
-    hamburgerBtn.style.display = 'block'; // NEW: Show hamburger
+
+    // UPDATED: Smoothly reveal navigation tools via classes instead of hard display inline rules
+    subtitleBtn.classList.add('visible');
+    hamburgerBtn.classList.add('visible');
+
+    // Stop the simulation loop because they chose to resume existing progress
+    stopProgressBarSimulation();
+
+    // Instantly hide onboarding tooltips since they're resuming
+    const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+    tooltips.forEach(t => t.classList.add('fade-out'));
 
     // Jump straight into the exact video where they left off
-    playCurrentSequenceVideo(); 
+    playCurrentSequenceVideo();
 });
 
-// Restart button: Wipe the save and show the start button
+// Restart button: Wipe the save and show the start button cleanly with onboarding visuals
 resumeNo.addEventListener('click', () => {
     clearProgress();
     resumeOverlay.style.display = 'none';
-    startBtn.style.display = 'block';
+
+    // Re-adds the .visible class so the start button fades back in!
+    startBtn.classList.add('visible');
+
+    // Keep tracking utility blocks active on screen for layout positioning
+    subtitleBtn.classList.add('visible');
+    hamburgerBtn.classList.add('visible');
+    progressContainer.style.display = 'block';
+    progressContainer.classList.add('visible');
+
+    // Bring back onboarding tooltip callouts smoothly by removing fade-out and enforcing visibility
+    const tooltips = document.querySelectorAll('.menu-tooltip, .cc-tooltip, .progress-tooltip');
+    tooltips.forEach(t => {
+        t.classList.remove('fade-out');
+        t.classList.add('visible'); // FIX: Directly reinforces the .visible class state for the progress tooltip!
+    });
+
+    // Fire back up the looping visualization metrics animation cue
+    startProgressBarSimulation();
 });
 
 subtitleBtn.addEventListener('click', () => {
@@ -154,9 +562,9 @@ subtitleBtn.addEventListener('click', () => {
         const currentTime = video.currentTime;
         const isPaused = video.paused;
         const nodeData = storyManifest[currentNodeId];
-        
+
         video.src = `${getActiveFolder(nodeData)}${currentSequenceIndex}.mp4`;
-        
+
         video.addEventListener('loadedmetadata', () => {
             video.currentTime = currentTime;
             if (!isPaused) {
@@ -174,18 +582,18 @@ hamburgerBtn.addEventListener('click', () => {
     if (!choicesOverlay.classList.contains('active')) {
         video.pause();
     }
-    
+
     // Reset to the main panel
     menuMainPanel.classList.add('active');
     menuConfirmPanel.classList.remove('active');
-    
+
     pauseMenuOverlay.classList.add('active');
 });
 
 // Continue Button
 menuContinue.addEventListener('click', () => {
     pauseMenuOverlay.classList.remove('active');
-    
+
     // Only play the video if they weren't in the middle of a narrative choice
     if (!choicesOverlay.classList.contains('active')) {
         video.play();
@@ -196,7 +604,7 @@ menuContinue.addEventListener('click', () => {
 function requestConfirmation(actionType, message) {
     pendingConfirmAction = actionType;
     confirmText.innerText = message;
-    
+
     menuMainPanel.classList.remove('active');
     menuConfirmPanel.classList.add('active');
 }
@@ -224,50 +632,59 @@ confirmYes.addEventListener('click', () => {
         clearProgress(); // Wipe the save
         currentScore = 0; // Reset score
 
-        updateProgressBar(); // NEW: Tell the UI to redraw the empty bar!
-        
+        updateProgressBar(); // Tell the UI to redraw the empty bar!
+
         pauseMenuOverlay.classList.remove('active');
         playNode("intro"); // Start from the beginning
-        
+
     } else if (pendingConfirmAction === 'mainmenu') {
         // Redirect to the main menu page
-        window.location.href = "mainMenu.index.html"; 
+        window.location.href = "mainMenu.html";
     }
 });
 
 // --- VIDEO PLAYER LOGIC ---
 
 function playNode(nodeId) {
+    const nodeData = storyManifest[nodeId];
+
+    // --- DYNAMIC ROUTING LOGIC ---
+    if (nodeData.isRouter) {
+        const destinationNode = nodeData.routeBasedOnScore(currentScore);
+        console.log(`🔀 [Router] Score is ${currentScore}. Jumping to: ${destinationNode}`);
+        playNode(destinationNode);
+        return; 
+    }
+
+    // --- STANDARD PLAYBACK LOGIC ---
     currentNodeId = nodeId;
-    currentSequenceIndex = 1; 
-    choicesOverlay.classList.remove('active'); 
-    choicesOverlay.innerHTML = ''; 
+    currentSequenceIndex = 1;
+    choicesOverlay.classList.remove('active');
+    choicesOverlay.innerHTML = '';
 
     playCurrentSequenceVideo();
 }
 
-// Replace your playCurrentSequenceVideo function with this:
 function playCurrentSequenceVideo() {
     const nodeData = storyManifest[currentNodeId];
     const videoPath = `${getActiveFolder(nodeData)}${currentSequenceIndex}.mp4`;
-    
+
     console.log(`3. Attempting to load video at: ${videoPath}`);
     video.src = videoPath;
-    
-    // We explicitly catch any playback errors so they don't happen in silence
+
     video.play().then(() => {
         console.log("4. SUCCESS: Video is playing!");
     }).catch((err) => {
         console.error(`🚨 ERROR: The browser blocked playback or couldn't find the file at '${videoPath}'.`, err);
-    }); 
-    
-    saveProgress(); 
+    });
+
+    saveProgress();
 }
 
 video.addEventListener('ended', () => {
     const nodeData = storyManifest[currentNodeId];
     const nextIndex = currentSequenceIndex + 1;
-    
+
     const nextVideoUrl = `${getActiveFolder(nodeData)}${nextIndex}.mp4`;
 
     const scout = document.createElement('video');
@@ -285,58 +702,319 @@ video.addEventListener('ended', () => {
 
 function handleSequenceEnd() {
     const nodeData = storyManifest[currentNodeId];
-    
+
+    // 1. If there are choices, show the buttons
     if (nodeData.choices && nodeData.choices.length > 0) {
-        showChoices(nodeData.choices);
-    } else {
+        showChoices(nodeData.choices, nodeData.question);
+    }
+    // 2. If there is an outcome screen defined, freeze frame and show feedback!
+    else if (nodeData.outcomeTitle) {
+        if (nodeData.outcomeTitle === "Good Job!") {
+            outcomeTitle.className = "good";
+        } else {
+            outcomeTitle.className = "bad";
+        }
+
+        outcomeTitle.innerText = nodeData.outcomeTitle;
+        outcomeText.innerText = nodeData.outcomeText;
+        targetNodeAfterOutcome = nodeData.autoNext; // Remember where to go next
+
+        outcomeOverlay.classList.add('active'); // Reveal the overlay over the paused video
+    }
+    // 3. If there is an autoNext but NO outcome screen, go straight to the loader
+    else if (nodeData.autoNext) {
+        preloadAndPlay(nodeData.autoNext);
+    }
+    // 4. Otherwise, the game is completely over
+    else {
         console.log("Story complete! Final Score:", currentScore);
-        clearProgress(); // Wipe the save so they can restart later
+        clearProgress();
+        showEndScreen();
     }
 }
 
-function showChoices(choicesArray) {
-    choicesOverlay.innerHTML = ''; 
+function showEndScreen() {
+    hamburgerBtn.classList.remove('visible');
+    subtitleBtn.classList.remove('visible');
+    progressContainer.style.display = 'none';
 
-    choicesArray.forEach(choice => {
-        const btn = document.createElement('button');
-        btn.classList.add('choice-btn');
-        btn.innerText = choice.text;
+    // Reveal the end screen
+    endOverlay.classList.add('active');
+}
 
-        btn.addEventListener('click', () => {
-            currentScore += choice.valueChange;
-            updateProgressBar();
-            playNode(choice.nextNode);
+function showChoices(choicesArray, questionText) {
+    choicesOverlay.innerHTML = '';
+    const nodeData = storyManifest[currentNodeId]; // Grab current node info
+
+    // NEW HELPER: Encapsulates building the title and buttons so we can delay them
+    function renderContent() {
+        // 1. Create and add the title
+        if (questionText) {
+            const titleElement = document.createElement('h2');
+            titleElement.id = 'choice-title';
+            titleElement.innerText = questionText;
+            choicesOverlay.appendChild(titleElement);
+        }
+
+        // 2. Create the buttons container
+        const btnContainer = document.createElement('div');
+        btnContainer.id = 'choice-buttons-container';
+
+        // 3. Generate the buttons
+        choicesArray.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.classList.add('choice-btn');
+            btn.innerText = choice.text;
+
+            btn.addEventListener('click', () => {
+                // Stop the timer if they click in time!
+                if (countdownTimerInterval) {
+                    clearInterval(countdownTimerInterval);
+                    timerSound.loop = false;
+                    timerSound.pause();
+                }
+                timerContainer.style.display = 'none';
+                
+                // NEW: Triggers point popups and bar tracking bounce or damage shake animations
+                triggerScoreEffect(choice.valueChange);
+                
+                currentScore += choice.valueChange;
+                if (currentScore < 0) {
+                    currentScore = 0;
+                }
+                updateProgressBar();
+                playNode(choice.nextNode);
+            });
+
+            btnContainer.appendChild(btn);
         });
 
-        choicesOverlay.appendChild(btn);
-    });
+        // 4. Reveal it
+        choicesOverlay.appendChild(btnContainer);
+    }
 
-    choicesOverlay.classList.add('active');
+    // --- TIMER LOGIC ---
+    if (nodeData.timeLimit) {
+        // Prepare the SVG math
+        const radius = timerCircle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        timerCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+
+        // Reset visuals
+        timerCircle.style.strokeDashoffset = 0;
+        timerCircle.style.stroke = "#0f0"; // Start Green
+        timerContainer.style.display = 'flex';
+
+        // Apply cinematic slide-down intro animation classes
+        timerContainer.classList.remove('settled');
+        timerContainer.classList.add('intro-anim');
+
+        // Append timerContainer immediately so it displays during intro animation
+        choicesOverlay.appendChild(timerContainer);
+        choicesOverlay.classList.add('active');
+
+        // ADJUSTED: Let the timer flash, and spawn the questions/buttons ONLY when it settles!
+        setTimeout(() => {
+            timerContainer.classList.remove('intro-anim');
+            timerContainer.classList.add('settled');
+
+            // Spawns question text and answers right as the clock hits the top bar position
+            renderContent();
+        }, 1200);
+
+        // Reset and enable audio looping immediately
+        timerSound.currentTime = 0;
+        timerSound.loop = true;
+        timerSound.play().catch(err => console.warn("Audio blocked by browser:", err));
+
+        const totalMs = nodeData.timeLimit * 1000;
+        const startTime = Date.now();
+
+        if (countdownTimerInterval) clearInterval(countdownTimerInterval);
+
+        countdownTimerInterval = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            let timeLeft = Math.ceil((totalMs - elapsed) / 1000);
+
+            if (timeLeft < 0) timeLeft = 0;
+            timerText.innerText = timeLeft;
+
+            const percentage = Math.max(0, 1 - (elapsed / totalMs));
+            const offset = circumference - (percentage * circumference);
+            timerCircle.style.strokeDashoffset = offset;
+
+            if (timeLeft <= 3) {
+                timerCircle.style.stroke = "#f00";
+            }
+
+            if (elapsed >= totalMs) {
+                clearInterval(countdownTimerInterval);
+                timerContainer.style.display = 'none';
+
+                timerSound.pause();
+                timerSound.loop = false;
+
+                // NEW: Triggers bubble popup notification for timeout point penalty
+                triggerScoreEffect(-100);
+
+                currentScore -= 100; // UPDATED: Corrected from -1 to -100 to match the 1000-point scale
+                if (currentScore < 0) currentScore = 0;
+                updateProgressBar();
+                playNode(nodeData.timeoutNode);
+            }
+        }, 50);
+
+    } else {
+        // Standard non-timed chapters load everything all at once
+        timerContainer.style.display = 'none';
+        choicesOverlay.appendChild(timerContainer);
+        renderContent();
+        choicesOverlay.classList.add('active');
+    }
 }
 
 // INITIALIZE: Run this immediately to see what UI to display
 checkSaveData();
 
 // --- KEYBOARD CONTROLS ---
-
 document.addEventListener('keydown', (event) => {
-    // Only trigger if the key pressed was 'Escape' AND the story has actually started
-    if (event.key === 'Escape' && currentNodeId !== null) {
-        
-        // 1. If the menu is currently OPEN
-        if (pauseMenuOverlay.classList.contains('active')) {
-            
-            // Are they looking at the "Are you sure?" confirmation screen?
-            if (menuConfirmPanel.classList.contains('active')) {
-                confirmNo.click(); // Escape cancels the confirmation
-            } else {
-                menuContinue.click(); // Escape closes the menu and resumes the game
-            }
-            
-        } 
-        // 2. If the menu is currently CLOSED
-        else {
-            hamburgerBtn.click(); // Escape opens the pause menu
+
+    // Developer Menu Toggle (Press 'P')
+    if ((event.key === 'p' || event.key === 'P') && currentNodeId !== null) {
+        devMenuOverlay.classList.toggle('active');
+
+        if (devMenuOverlay.classList.contains('active') && !isDevAuthenticated) {
+            devPasscodeInput.value = ''; 
+            devAuthError.style.display = 'none';
+            setTimeout(() => devPasscodeInput.focus(), 100);
         }
     }
+
+    if (event.key === 'Escape' && currentNodeId !== null) {
+        if (pauseMenuOverlay.classList.contains('active')) {
+            if (menuConfirmPanel.classList.contains('active')) {
+                confirmNo.click(); 
+            } else {
+                menuContinue.click(); 
+            }
+        } else {
+            hamburgerBtn.click(); 
+        }
+    }
+});
+
+// --- PRELOADER LOGIC ---
+function preloadAndPlay(targetNodeId) {
+    const chapterLoader = document.getElementById('chapter-loader-overlay');
+    const loaderProgressBar = document.getElementById('loader-progress-bar');
+
+    loaderProgressBar.style.width = '0%';
+    chapterLoader.classList.add('active');
+
+    let actualNodeData = storyManifest[targetNodeId];
+    let actualNodeToPlay = targetNodeId;
+
+    if (actualNodeData && actualNodeData.isRouter) {
+        actualNodeToPlay = actualNodeData.routeBasedOnScore(currentScore);
+        actualNodeData = storyManifest[actualNodeToPlay];
+    }
+
+    const videoPath = `${getActiveFolder(actualNodeData)}1.mp4`;
+    console.log(`⏳ [Preloader] Starting transition to: ${videoPath}`);
+
+    const minimumTimePromise = new Promise(resolve => {
+        let fakeProgress = 0;
+
+        const progressInterval = setInterval(() => {
+            fakeProgress += Math.random() * 15; 
+            if (fakeProgress > 90) fakeProgress = 90; 
+            loaderProgressBar.style.width = `${fakeProgress}%`;
+        }, 200);
+
+        setTimeout(() => {
+            clearInterval(progressInterval);
+            resolve();
+        }, 1500);
+    });
+
+    const videoLoadPromise = new Promise((resolve) => {
+        const preloaderVideo = document.createElement('video');
+        preloaderVideo.preload = 'auto';
+        preloaderVideo.src = videoPath;
+
+        preloaderVideo.oncanplaythrough = () => resolve();
+        preloaderVideo.onerror = () => resolve();
+
+        preloaderVideo.load();
+    });
+
+    Promise.all([minimumTimePromise, videoLoadPromise]).then(() => {
+        loaderProgressBar.style.width = '100%';
+
+        setTimeout(() => {
+            chapterLoader.classList.remove('active');
+
+            setTimeout(() => {
+                playNode(actualNodeToPlay);
+            }, 600); 
+
+        }, 400);
+    });
+}
+
+// --- OUTCOME SCREEN LOGIC ---
+outcomeNextBtn.addEventListener('click', () => {
+    outcomeOverlay.classList.remove('active');
+    preloadAndPlay(targetNodeAfterOutcome);
+});
+
+// --- DEVELOPER MENU LOGIC ---
+devCloseBtn.addEventListener('click', () => {
+    devMenuOverlay.classList.remove('active');
+});
+
+// --- DEV MENU AUTHENTICATION LOGIC ---
+function checkDevPasscode() {
+    if (devPasscodeInput.value === 'bgDev') {
+        isDevAuthenticated = true;
+        devAuthContainer.style.display = 'none';
+        devContent.style.display = 'flex'; 
+    } else {
+        devAuthError.style.display = 'block';
+        devPasscodeInput.value = '';
+        devPasscodeInput.focus();
+    }
+}
+
+devPasscodeInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        checkDevPasscode();
+    }
+});
+
+devAuthCloseBtn.addEventListener('click', () => {
+    devMenuOverlay.classList.remove('active');
+});
+
+devBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const targetNode = e.target.getAttribute('data-node');
+
+        // UPDATED: Fixed developer skip scores to correctly align with the 1000 point scale framework
+        if (targetNode === 'intro') currentScore = 0;
+        if (targetNode === 'chap2') currentScore = 160;
+        if (targetNode === 'chap3') currentScore = 320;
+        if (targetNode === 'chap4') currentScore = 480;
+        if (targetNode === 'chap5') currentScore = 640;
+        if (targetNode === 'chap6') currentScore = 800; // Enters Gauntlet with exactly 800 points
+        if (targetNode === 'chap7') currentScore = 1000;
+
+        updateProgressBar();
+
+        pauseMenuOverlay.classList.remove('active');
+        choicesOverlay.classList.remove('active');
+        devMenuOverlay.classList.remove('active');
+
+        preloadAndPlay(targetNode);
+    });
 });
