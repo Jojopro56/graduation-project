@@ -1,444 +1,291 @@
-/* --- BASE STYLES & NWMSU THEMING --- */
+/* --- BASE STYLES & NWMSU THEMATIC MATRIX --- */
 :root {
     --nw-green: #006747;
     --nw-dark: #004b33;
-    --bg-color: #111;
+    --bg-color: #0d0d0d;
 }
 
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+    margin: 0; padding: 0; width: 100%; height: 100%;
     background-color: var(--bg-color);
-    font-family: sans-serif;
-    overflow: hidden; /* No scrolling allowed! */
-    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; color: white;
 }
 
-/* --- 1. PRESS START SCREEN (FORZA STYLE) --- */
-#press-start-screen {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 100;
-    background-color: black; /* Black background for the fade-in */
-    transition: opacity 0.8s ease; /* Smooth fade to main menu */
-    overflow: hidden;
+/* --- FORZA HORIZON PANEL ANIMATION SYSTEM --- */
+.menu-view {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; gap: 25px; padding: 60px; box-sizing: border-box;
+    z-index: 5; opacity: 0; visibility: hidden; pointer-events: none;
+    transform: scale(0.97);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s ease-in-out, visibility 0.8s step-end;
 }
 
-#start-bg-video {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover;
-    animation: fadeInVideo 3s ease-in-out forwards; /* Fades in from black smoothly */
-    opacity: 0; 
+.menu-view.active-panel {
+    transform: translateX(0) scale(1); opacity: 1; visibility: visible; pointer-events: auto;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s ease-in-out, visibility 0s linear;
 }
+.menu-view.slide-out-left { transform: translateX(-100vw) scale(0.97); opacity: 0; visibility: hidden; pointer-events: none; }
+.menu-view.hidden-panel-right { transform: translateX(100vw) scale(0.97); opacity: 0; visibility: hidden; pointer-events: none; }
 
-@keyframes fadeInVideo {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+.menu-panel-header { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 15px; flex-shrink: 0; }
+.menu-panel-header h2 { font-size: 2.2rem; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+.header-spacer { width: 140px; }
 
-.start-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.2); /* Slight darkening so text is readable */
-}
+.control-nav-btn, .full-run-btn { padding: 12px 24px; font-size: 1rem; font-weight: bold; color: white; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer; transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.control-nav-btn:hover { background: white; color: black; border-color: white; }
 
-/* Positions logo and text in bottom right */
-.start-prompt-container {
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 2;
-}
+/* --- 1. PRESS START SCREEN --- */
+#press-start-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background-color: rgba(0, 0, 0, 0.15); transition: opacity 0.8s ease; overflow: hidden; }
+#start-bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; animation: fadeInVideo 1.5s ease-in-out forwards; opacity: 0; z-index: 1; }
+.start-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2; }
+.start-overlay::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.95) 100%); opacity: 0; z-index: 3; transition: opacity 1.5s ease-in-out; }
+.start-overlay.darkened::after { opacity: 1; }
+@keyframes fadeInVideo { to { opacity: 1; } }
 
-#start-logo {
-    max-width: 400px; /* Greatly increased maximum size */
-    width: 45vw; /* Scales responsively based on the screen width */
-    min-width: 350px; /* Prevents it from getting too tiny on small screens */
-    
-    /* NEW: A negative margin pulls the blinking text up to eat the invisible gap! */
-    margin-bottom: -90px; 
-    
-    position: relative;
-    z-index: 2;
-}
+.start-prompt-container { position: absolute; bottom: 60px; right: 80px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
+#start-logo { max-width: 420px; width: 45vw; min-width: 350px; margin-bottom: -70px; position: relative; z-index: 2; }
+.blinking-text { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); animation: blink 1.5s infinite; margin: 0; z-index: 3; }
+@keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.98); } }
 
-.blinking-text {
-    font-size: 2.5vmin; /* Scaled down slightly so the logo dominates the hierarchy */
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-    animation: blink 1.5s infinite;
-    cursor: pointer;
-    margin: 0;
-    z-index: 3; /* Ensures text stays clickable if it overlaps the logo's invisible box */
-}
+/* --- MAIN MENU BLOCKS & FORZA PARALLAX STYLES --- */
+.right-stack { display: flex; flex-direction: column; gap: 25px; flex: 1; }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-@media (max-width: 768px) {
-    /* Centers text and logo on mobile devices */
-    .start-prompt-container {
-        right: 50%;
-        transform: translateX(50%);
-        bottom: 40px;
-        width: 90%;
-    }
-    
-    /* NEW: Slightly relaxes the negative space on small phones */
-    #start-logo {
-        margin-bottom: -50px; 
-    }
-}
-
-/* --- 2. MAIN MENU GRID (FORZA STYLE) --- */
-#main-menu-container {
-    display: flex;
-    gap: 20px;
-    padding: 40px;
-    height: 100%;
+/* Enforces predictable layout sizing across native HTML button elements */
+/* --- CORE SELECTION COMPONENT BASE STYLES --- */
+.menu-block, .mode-card, .chapter-card { 
+    position: relative; 
     box-sizing: border-box;
-    opacity: 0; /* Hidden until Press Start is cleared */
-    transition: opacity 0.5s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    cursor: pointer; 
+    background-color: #000; 
+    color: white; 
+    text-align: left; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4); 
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease; 
 }
 
-.right-stack {
+/* --- 1. DYNAMIC MAIN MENU DASHBOARD SPECIFICS --- */
+.right-stack { display: flex; flex-direction: column; gap: 25px; flex: 1; }
+
+#btn-story { flex: 1; }
+#btn-guide { flex: 2; }
+#btn-credits { flex: 1; }
+
+/* RESTORED: Absolute positioning allows the main menu tiles to naturally stretch to fill screen heights */
+.block-content { 
+    position: absolute; 
+    bottom: 35px; 
+    left: 35px; 
+    z-index: 3; 
+}
+
+/* --- 2. INTERMEDIATE EXPERIENCE MODE CARD SPECIFICS --- */
+#mode-selection-container { flex-direction: column !important; justify-content: flex-start; }
+.mode-split-wrapper { display: flex; flex-direction: row; gap: 25px; width: 100%; flex: 1; }
+
+.mode-card { 
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex: 1; /* Takes up right half */
+    align-items: flex-end;
+    padding: 45px; 
+}
+.mode-card-content { 
+    position: relative; 
+    z-index: 3; 
+    max-width: 95%; 
 }
 
-.menu-block {
-    position: relative;
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    background-color: var(--nw-green);
-    color: white;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    text-align: left;
-    /* ADD DEFAULT BACKGROUNDS HERE */
-    background-size: cover;
-    background-position: center;
-}
+/* --- 3. STANDALONE CHAPTER SELECTION CARD SPECIFICS --- */
+#chapter-menu-container { flex-direction: column !important; justify-content: flex-start; }
+.chapter-grid-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; flex: 1; }
 
-#btn-story {
-    flex: 1; /* Takes up left half full height */
-    background-image: url('images/story-bg.jpg'); 
+.chapter-card { 
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    padding: 25px; 
+    min-height: 180px; 
 }
+.card-tag { position: relative; z-index: 3; background: var(--nw-green); padding: 6px 14px; font-size: 0.8rem; font-weight: bold; border-radius: 6px; text-transform: uppercase; width: fit-content; }
+.card-details { position: relative; z-index: 3; }
 
-#btn-guide {
-    flex: 2; /* Taller top right block */
-    background-image: url('images/guide-bg.jpg');
-}
-
-#btn-credits {
-    flex: 1; /* Shorter bottom right block */
-    background-image: url('images/credits-bg.jpg');
-}
-
-/* Darken the backgrounds slightly so text is readable */
-.menu-block::before {
-    content: '';
+/* --- 4. GLOBAL FORZA HORIZON PARALLAX BACKGROUND SYSTEM --- */
+.button-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,103,71,0.2) 100%);
-    transition: background 0.3s;
+    background-size: cover; background-position: center; 
+    transform: scale(1);
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.menu-block:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 103, 71, 0.5);
-}
-
-.menu-block:hover::before {
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-}
-
-.block-content {
-    position: absolute;
-    bottom: 20px;
-    left: 30px;
+/* Gradients and shading layer positioned above the image but beneath texts */
+/* FIXED: Overlaid a rich Northwest Green transitioning to a solid black fade at the bottom for max legibility */
+.menu-block::before, .mode-card::before, .chapter-card::before { 
+    content: ''; 
+    position: absolute; 
+    top: 0; left: 0; width: 100%; height: 100%; 
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 103, 71, 0.6) 45%, rgba(0, 0, 0, 0.1) 100%); 
     z-index: 2;
-}
-
-.menu-block h2 { font-size: 3rem; margin: 0; }
-.menu-block p { font-size: 1.2rem; margin: 5px 0 0 0; color: #ccc; }
-
-/* Work in Progress Styling */
-.menu-block.wip {
-    filter: grayscale(100%);
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.menu-block.wip:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-/* --- MOBILE VIEW (Stacks blocks vertically) --- */
-@media (max-width: 768px) {
-    #main-menu-container {
-        flex-direction: column;
-        padding: 20px;
-    }
-    #btn-story { flex: 2; }
-    .right-stack { flex: 3; }
-    .menu-block h2 { font-size: 2rem; }
-}
-
-/* --- 3. TUTORIAL OVERLAY --- */
-/* --- 3. TUTORIAL OVERLAY --- */
-#tutorial-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 110;
-    display: flex; /* Changed to always be flex */
-    justify-content: center;
-    align-items: center;
-    
-    /* NEW: Smooth transition properties */
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
-}
-
-/* NEW: Active state to trigger the fade in */
-#tutorial-overlay.active {
     opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    transition: opacity 0.4s ease-in-out; /* Buttery smooth hardware-accelerated fade tracking */
 }
 
-.tutorial-container {
-    width: 80%;
-    max-width: 1000px;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    background: #000;
-    border: 2px solid var(--nw-green);
-    border-radius: 12px;
-    overflow: hidden;
+/* High-contrast hover card adjustments */
+.menu-block:hover, .mode-card:hover, .chapter-card:hover { 
+    transform: translateY(-5px) scale(1.015); 
+    border-color: #00ff88 !important;
+    box-shadow: 0 12px 35px rgba(0, 103, 71, 0.45); 
 }
 
-#tutorial-image {
-    width: 100%;
-    height: calc(100% - 80px);
-    object-fit: contain;
-    background: #111;
+/* Smooth zoom and rotational depth applied ONLY to the background image layer on hover */
+.menu-block:hover .button-bg, .mode-card:hover .button-bg, .chapter-card:hover .button-bg {
+    transform: scale(1.07) rotate(0.4deg);
 }
 
-.tutorial-controls {
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    background: var(--nw-dark);
+/* FIXED: Drops the mask opacity on hover so the panel fades seamlessly from dark to bright */
+.menu-block:hover::before, .mode-card:hover::before, .chapter-card:hover::before { 
+    opacity: 0.35; 
 }
 
-.tut-btn {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: transparent;
-    border: 2px solid white;
-    border-radius: 5px;
-    cursor: pointer;
-}
+.menu-block h2 { font-size: 2.8rem; margin: 0; font-weight: 800; letter-spacing: -1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+.menu-block p { font-size: 1.1rem; margin: 8px 0 0 0; color: #ddd; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 
-.tut-btn:hover:not(:disabled) {
-    background: white;
-    color: black;
-}
+.menu-block.wip { filter: grayscale(100%); opacity: 0.4; cursor: not-allowed; }
+.menu-block.wip:hover { transform: none; box-shadow: none; border-color: rgba(255,255,255,0.1) !important; }
+.menu-block.wip:hover .button-bg { transform: none; }
 
-.tut-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
+.menu-block h2 { font-size: 2.8rem; margin: 0; font-weight: 800; letter-spacing: -1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+.menu-block p { font-size: 1.1rem; margin: 8px 0 0 0; color: #ddd; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
 
-#tut-start {
-    background: var(--nw-green);
-    border-color: var(--nw-green);
-}
+.menu-block.wip { filter: grayscale(100%); opacity: 0.4; cursor: not-allowed; }
+.menu-block.wip:hover { transform: none; box-shadow: none; border-color: rgba(255,255,255,0.1) !important; }
+.menu-block.wip:hover .button-bg { transform: none; }
 
+.menu-block h2 { font-size: 2.8rem; margin: 0; font-weight: 800; letter-spacing: -1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+.menu-block p { font-size: 1.1rem; margin: 8px 0 0 0; color: #ddd; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+
+.menu-block.wip { filter: grayscale(100%); opacity: 0.4; cursor: not-allowed; }
+.menu-block.wip:hover { transform: none; box-shadow: none; border-color: rgba(255,255,255,0.1) !important; }
+.menu-block.wip:hover .button-bg { transform: none; }
+
+/* --- FIXED: DESKTOP COLUMN FORCE ALIGNMENTS --- */
+#mode-selection-container { flex-direction: column !important; justify-content: flex-start; }
+#chapter-menu-container { flex-direction: column !important; justify-content: flex-start; }
+
+.mode-split-wrapper { display: flex; flex-direction: row; gap: 25px; width: 100%; flex: 1; }
+.mode-card { position: relative; flex: 1; border: none; border-radius: 16px; overflow: hidden; cursor: pointer; background-color: var(--nw-green); color: white; text-align: left; background-size: cover; background-position: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); padding: 45px; display: flex; align-items: flex-end; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease; }
+.mode-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,103,71,0.2) 100%); transition: background 0.3s ease; z-index: 1; }
+.mode-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 12px 35px rgba(0, 103, 71, 0.4); }
+.mode-card-content { position: relative; z-index: 2; max-width: 95%; }
+.mode-card h2 { font-size: 2.4rem; font-weight: 800; margin: 0 0 12px 0; letter-spacing: -0.5px; }
+.mode-card p { font-size: 1.1rem; line-height: 1.5; color: #ccc; margin: 0; }
+
+/* --- CHAPTER SELECTOR GRID --- */
+.chapter-grid-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 100%; flex: 1; }
+.chapter-card { position: relative; border: none; border-radius: 14px; background-size: cover; background-position: center; cursor: pointer; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: space-between; padding: 25px; text-align: left; color: white; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease; }
+.chapter-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.4) 100%); transition: background 0.3s; z-index: 1; }
+.chapter-card:hover { transform: scale(1.03) translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.7); }
+.card-tag { position: relative; z-index: 2; background: var(--nw-green); padding: 6px 14px; font-size: 0.8rem; font-weight: bold; border-radius: 6px; text-transform: uppercase; width: fit-content; }
+.card-details { position: relative; z-index: 2; }
+.card-details h3 { font-size: 1.6rem; margin: 0 0 5px 0; font-weight: 700; }
+.card-details p { font-size: 0.95rem; margin: 0; color: #ccc; }
+
+.card-status-badge { position: absolute; top: 20px; right: 20px; width: 28px; height: 28px; border-radius: 50%; z-index: 10; display: none; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: bold; box-shadow: 0 3px 10px rgba(0,0,0,0.5); animation: badgePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.card-status-badge.completed { display: flex; background: #00ff88; color: black; }
+.card-status-badge.completed::after { content: '✓'; }
+.card-status-badge.failed { display: flex; background: #ff3333; color: white; }
+.card-status-badge.failed::after { content: '✕'; }
+@keyframes badgePop { from { transform: scale(0); } to { transform: scale(1); } }
+
+/* --- OTHER OVERLAYS & TIMERS --- */
+#tutorial-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 110; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out; }
+#tutorial-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+.tutorial-container { width: 80%; max-width: 1000px; height: 80%; display: flex; flex-direction: column; background: #000; border: 2px solid var(--nw-green); border-radius: 12px; overflow: hidden; }
+#tutorial-image { width: 100%; height: calc(100% - 80px); object-fit: contain; background: #111; }
+.tutorial-controls { height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; background: var(--nw-dark); }
+.tut-btn { padding: 10px 20px; font-size: 1.2rem; font-weight: bold; color: white; background: transparent; border: 2px solid white; border-radius: 5px; cursor: pointer; }
+.tut-btn:hover:not(:disabled) { background: white; color: black; }
+.tut-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 #tut-dots { display: flex; gap: 10px; }
 .dot { width: 12px; height: 12px; background: #555; border-radius: 50%; }
 .dot.active { background: white; }
+#tut-return { position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(0, 75, 51, 0.9); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+#tut-timer-container { display: flex; align-items: center; justify-content: center; width: 60px; }
+.progress-ring__circle { transition: stroke-dashoffset 0.05s linear; transform: rotate(-90deg); transform-origin: 50% 50%; stroke: var(--nw-green); }
 
-/* --- TOP LEFT RETURN BUTTON --- */
-#tut-return {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-    background: rgba(0, 75, 51, 0.9); /* Bearcat dark green, slightly transparent */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
+#credits-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 110; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.5s step-end; }
+#credits-overlay.active { opacity: 1; visibility: visible; transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear; }
+.credits-container { position: relative; width: 85%; max-width: 750px; height: 80%; max-height: 680px; background: linear-gradient(180deg, rgba(0, 75, 51, 0.85) 0%, rgba(13, 13, 13, 0.96) 100%); border: 2px solid rgba(0, 103, 71, 0.4); border-radius: 20px; padding: 45px 35px; overflow-y: auto; box-sizing: border-box; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); transform: scale(0.93) translateY(15px); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); scrollbar-width: thin; scrollbar-color: var(--nw-green) rgba(0, 0, 0, 0.3); }
+#credits-overlay.active .credits-container { transform: scale(1) translateY(0); }
+.credits-container::-webkit-scrollbar { width: 6px; }
+.credits-container::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); border-radius: 10px; }
+.credits-container::-webkit-scrollbar-thumb { background: var(--nw-green); border-radius: 10px; }
+.credit-section-title { font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: #00ff9d; margin-top: 40px; margin-bottom: 20px; text-align: center; }
+.credit-row { margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.credit-role { font-size: 0.9rem; color: rgba(255, 255, 255, 0.55); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.credit-name { font-size: 1.4rem; font-weight: 700; color: white; }
+.credits-legal { margin-top: 50px; padding-top: 25px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; line-height: 1.6; color: rgba(255, 255, 255, 0.4); text-align: center; }
+.credits-legal p { margin: 0 0 10px 0; }
 
-/* --- MOBILE TWEAKS FOR TUTORIAL --- */
-@media (max-width: 768px) {
-    .tutorial-container {
-        width: 95%; /* Gives the box slightly more width on small phones */
-        height: 85%;
-    }
-    
-    .tutorial-controls {
-        padding: 0 15px; /* Reduces padding to prevent cramped buttons */
-    }
-
-    .tut-btn {
-        padding: 8px 16px;
-        font-size: 1rem; /* Scales font down slightly to prevent overlap */
-    }
-    
-    #tut-return {
-        top: 15px;
-        left: 15px;
-        font-size: 0.9rem; /* Keeps the return button sleek on mobile */
-    }
-}
-
-/* --- 4. LOADING OVERLAY --- */
-#loading-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('images/loading-bg.jpg') center/cover; /* ADD YOUR BG HERE */
-    z-index: 120;
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-}
-
-#loading-overlay::before {
-    content: '';
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-}
-
-.loading-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-}
-
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 6px solid rgba(255,255,255,0.3);
-    border-top-color: var(--nw-green);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 20px auto;
-}
-
+#loading-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 120; display: none; justify-content: center; align-items: center; }
+.loading-content { text-align: center; }
+.spinner { width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.1); border-top-color: var(--nw-green); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* --- 5. CREDITS OVERLAY --- */
-#credits-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 110; /* Same layer as the tutorial overlay */
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-}
+/* ==========================================================================
+   UPGRADED RESPONSIVE SCALING OVERRIDES
+   ========================================================================== */
+@media (max-width: 1024px) { .chapter-grid-wrapper { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+    .menu-view { flex-direction: column; padding: 24px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .menu-panel-header { flex-direction: column; gap: 10px; align-items: stretch; text-align: center; padding-bottom: 15px; margin-bottom: 15px; }
+    .menu-panel-header h2 { font-size: 1.4rem; order: -1; margin-bottom: 4px; letter-spacing: 0px; }
+    .header-spacer { display: none; }
+    .control-nav-btn { width: 100%; text-align: center; padding: 12px; font-size: 0.95rem; }
+    #main-menu-container { flex-direction: column; }
+    .right-stack { gap: 20px; }
+    .menu-block { min-height: 140px; }
+    .menu-block h2 { font-size: 1.8rem; }
+    .block-content { bottom: 20px; left: 20px; }
+    .mode-split-wrapper { flex-direction: column; gap: 16px; }
+    .mode-card { 
+        padding: 24px; 
+        min-height: 220px; /* Increased slightly to ensure comfortable text breathing room */
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; 
+        justify-content: space-between; 
+    }
 
-.credits-container {
-    position: relative;
-    width: 80%;
-    max-width: 800px;
-    max-height: 85%;
-    background: var(--nw-dark);
-    border: 2px solid var(--nw-green);
-    border-radius: 12px;
-    padding: 40px;
-    overflow-y: auto; /* Allows scrolling if you add a lot more names later */
-    text-align: center;
-    box-sizing: border-box;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-}
-
-.credits-container h2 {
-    font-size: 3rem;
-    margin-top: 0;
-    margin-bottom: 40px;
-    color: white;
-    border-bottom: 2px solid var(--nw-green);
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 2.5rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.close-btn:hover {
-    color: var(--nw-green);
-}
-
-.credit-role {
-    font-size: 1.2rem;
-    color: #ccc;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
-
-.credit-name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 30px;
-}
-
-.credits-legal {
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    font-size: 0.9rem;
-    color: #888;
-    line-height: 1.6;
-}
-
-.credits-legal p {
-    margin: 10px 0;
-    font-size: 0.9rem;
-}
-
-/* --- TUTORIAL TIMER SVG --- */
-#tut-timer-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px; /* Reserves space so buttons don't jump around */
-}
-
-.progress-ring__circle {
-    transition: stroke-dashoffset 0.05s linear;
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-    stroke: var(--nw-green); /* Bearcat Green */
+    .mode-card-content { 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        position: relative;
+        z-index: 3;
+    }
+    .mode-card h2 { 
+        font-size: 1.5rem; 
+        margin: 0 0 auto 0; /* Anchors the title firmly to the top layer */
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    
+    .mode-card p { 
+        font-size: 0.9rem; 
+        line-height: 1.4; 
+        margin: 15px 0 0 0; /* Pushes description text to the absolute bottom of the card block */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+    .chapter-grid-wrapper { grid-template-columns: repeat(2, 1fr); gap: 14px; padding-bottom: 30px; }
+    .chapter-card { aspect-ratio: 1 / 1; min-height: auto; padding: 16px; justify-content: space-between; }
+    .card-tag { padding: 4px 8px; font-size: 0.7rem; }
+    .chapter-card h3 { font-size: 1.1rem; line-height: 1.25; margin: 0; font-weight: 700; }
+    .chapter-card p { display: none; } 
+    .card-status-badge { top: 12px; right: 12px; width: 24px; height: 28px; font-size: 0.85rem; }
 }

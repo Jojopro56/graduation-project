@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STORY MODE | Bearcat Green</title>
     <link rel="stylesheet" href="style.css">
-
     <link rel="icon" type="image/png" href="images/bg-favicon.png">
 </head>
-
 <body>
 
     <div id="video-container">
@@ -17,11 +14,11 @@
             Your browser does not support the video tag.
         </video>
 
-        <!-- NEW: Hidden Timer Audio Element -->
         <audio id="timer-sound" src="sound/7sec.mp3" preload="auto"></audio>
 
         <button id="start-btn">Start the Story</button>
 
+        <!-- CONTINUE SAVED GAME CONTAINER -->
         <div id="resume-overlay">
             <h2>Resume your story?</h2>
             <div class="resume-buttons">
@@ -30,16 +27,17 @@
             </div>
         </div>
 
+        <!-- TIMED ACTION OVERLAY -->
         <div id="choices-overlay">
             <div id="timer-container">
                 <svg class="progress-ring" width="80" height="80">
-                    <circle class="progress-ring__circle" stroke="white" stroke-width="6" fill="transparent" r="34"
-                        cx="40" cy="40" />
+                    <circle class="progress-ring__circle" stroke="white" stroke-width="6" fill="transparent" r="34" cx="40" cy="40" />
                 </svg>
                 <div id="timer-text">5</div>
             </div>
         </div>
 
+        <!-- MODE A: CONTINUOUS EXPERIENCE POINTS SCOREBAR -->
         <div id="progress-container">
             <span class="score-label">0</span>
             <div id="progress-track-wrapper">
@@ -49,7 +47,18 @@
             <span class="score-label">1000</span>
             <div id="score-floating-bubble"></div>
         </div>
-        <div class="progress-tooltip">Track your recycling score metrics here</div>
+
+        <!-- MODE B: CLASSROOM CHAPTER STATUS MATRIX MODULE -->
+        <div id="chapter-status-container">
+            <div class="status-node-dot" id="node-dot-intro" data-label="Ch. 1"></div>
+            <div class="status-node-dot" id="node-dot-chap2" data-label="Ch. 2"></div>
+            <div class="status-node-dot" id="node-dot-chap3" data-label="Ch. 3"></div>
+            <div class="status-node-dot" id="node-dot-chap4" data-label="Ch. 4"></div>
+            <div class="status-node-dot" id="node-dot-chap5" data-label="Ch. 5"></div>
+            <div class="status-node-dot" id="node-dot-chap6" data-label="Ch. 6"></div>
+        </div>
+
+        <div class="progress-tooltip">Track your objective parameters here</div>
 
         <button id="subtitle-btn" aria-label="Toggle Subtitles">
             CC
@@ -63,13 +72,13 @@
             <div class="menu-tooltip">Open pause and navigation menu</div>
         </button>
 
+        <!-- PAUSE UTILITY OVERLAYS -->
         <div id="pause-menu-overlay">
             <div id="menu-main-panel" class="menu-panel">
                 <button id="menu-continue" class="menu-btn">Continue</button>
                 <button id="menu-restart" class="menu-btn">Restart Experience</button>
                 <button id="menu-mainmenu" class="menu-btn">Back to Main Menu</button>
             </div>
-
             <div id="menu-confirm-panel" class="menu-panel">
                 <h2 id="confirm-text">Are you sure?</h2>
                 <p id="confirm-subtext">You can always come back and start where you left off.</p>
@@ -80,38 +89,40 @@
             </div>
         </div>
 
+        <!-- UPGRADED: Cinematic Performance Report Card End Screen -->
         <div id="end-overlay">
-            <h2>End of prototype</h2>
-            <p>Thanks for testing out this experience.</p>
-            <button id="end-mainmenu" class="menu-btn">Back to Main Menu</button>
+            <div class="end-scroll-wrapper">
+                <h2 id="end-dashboard-title">Performance Report Card</h2>
+                <p id="end-dashboard-subtitle">Review your recycling metrics and sustainability parameters below.</p>
+                
+                <!-- Dynamic injection point for chapter performance cards -->
+                <div id="end-performance-report-wrapper"></div>
+                
+                <button id="end-mainmenu" class="menu-btn" style="margin-top: 20px;">Back to Main Menu</button>
+            </div>
         </div>
 
         <div id="dev-menu-overlay">
             <h2>Developer Menu</h2>
-
             <div id="dev-auth-container">
                 <input type="password" id="dev-passcode-input" placeholder="Enter Passcode">
-
                 <p id="dev-auth-error" style="color: #f00; font-family: monospace; display: none;">Access Denied</p>
-                <button id="dev-auth-close-btn" class="menu-btn"
-                    style="margin-top: 20px; font-size: 1rem; padding: 10px 20px;">Close</button>
+                <button id="dev-auth-close-btn" class="menu-btn" style="margin-top: 20px; font-size: 1rem; padding: 10px 20px;">Close</button>
             </div>
-
             <div id="dev-content" style="display: none; flex-direction: column; align-items: center; width: 100%;">
                 <div class="dev-buttons">
-                    <button class="dev-btn" data-node="intro">Skip to Chapter 1</button>
-                    <button class="dev-btn" data-node="chap2">Skip to Chapter 2</button>
-                    <button class="dev-btn" data-node="chap3">Skip to Chapter 3</button>
-                    <button class="dev-btn" data-node="chap4">Skip to Chapter 4</button>
-                    <button class="dev-btn" data-node="chap5">Skip to Chapter 5</button>
-                    <button class="dev-btn" data-node="chap6">Skip to Chapter 6</button>
-                    <button class="dev-btn" data-node="chap7">Skip to Chapter 7</button>
+                    <button class="dev-btn" data-node="intro">Skip to Ch. 1: The Laundry Room</button>
+                    <button class="dev-btn" data-node="chap2">Skip to Ch. 2: The Drink</button>
+                    <button class="dev-btn" data-node="chap3">Skip to Ch. 3: The Test</button>
+                    <button class="dev-btn" data-node="chap4">Skip to Ch. 4: The Pizza Box</button>
+                    <button class="dev-btn" data-node="chap5">Skip to Ch. 5: The Bottle</button>
+                    <button class="dev-btn" data-node="chap6">Skip to Ch. 6: The Trash Finale</button>
+                    <button class="dev-btn" data-node="chap7">Skip to Chapter 7 (Score Router)</button>
                 </div>
                 <button id="dev-close-btn" class="menu-btn">Close Dev Menu</button>
             </div>
         </div>
 
-        <!-- NEW: Outcome Feedback Screen -->
         <div id="outcome-overlay">
             <div class="outcome-box">
                 <h2 id="outcome-title">Good Job!</h2>
@@ -120,7 +131,6 @@
             </div>
         </div>
 
-        <!-- NEW: Active Preloader Screen -->
         <div id="chapter-loader-overlay">
             <div class="loader-content">
                 <div class="spinner"></div>
@@ -135,5 +145,4 @@
 
     <script src="app.js"></script>
 </body>
-
 </html>
