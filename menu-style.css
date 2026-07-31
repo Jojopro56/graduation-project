@@ -1,4 +1,4 @@
-/* --- BASE STYLES & NWMSU THEMATIC MATRIX --- */
+/* --- BASE STYLES & MOBILE VIEWPORT LOCK --- */
 :root {
     --nw-green: #006747;
     --nw-dark: #004b33;
@@ -6,10 +6,21 @@
 }
 
 body, html {
-    margin: 0; padding: 0; width: 100%; height: 100%;
+    margin: 0; 
+    padding: 0; 
+    width: 100vw; 
+    height: 100vh;
+    height: 100dvh;
     background-color: var(--bg-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; color: white;
+    overflow: hidden !important; 
+    position: fixed; /* Prevents mobile rubber-band scrolling and horizontal spillage */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    touch-action: manipulation; /* Prevents double-tap zoom & pinch gestures */
+    color: white;
 }
 
 /* --- FORZA HORIZON PANEL ANIMATION SYSTEM --- */
@@ -25,8 +36,8 @@ body, html {
     transform: translateX(0) scale(1); opacity: 1; visibility: visible; pointer-events: auto;
     transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s ease-in-out, visibility 0s linear;
 }
-.menu-view.slide-out-left { transform: translateX(-100vw) scale(0.97); opacity: 0; visibility: hidden; pointer-events: none; }
-.menu-view.hidden-panel-right { transform: translateX(100vw) scale(0.97); opacity: 0; visibility: hidden; pointer-events: none; }
+.menu-view.slide-out-left { transform: translateX(-100%) scale(0.97); opacity: 0; visibility: hidden; pointer-events: none; }
+.menu-view.hidden-panel-right { transform: translateX(100%) scale(0.97); opacity: 0; visibility: hidden; pointer-events: none; }
 
 .menu-panel-header { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 15px; flex-shrink: 0; }
 .menu-panel-header h2 { font-size: 2.2rem; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
