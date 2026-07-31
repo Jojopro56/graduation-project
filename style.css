@@ -255,10 +255,69 @@ video { width: 100%; height: 100%; object-fit: contain; position: relative; z-in
 .report-card.unplayed-card .report-badge::after { content: '—'; }
 .report-card.unplayed-card .report-chapter-tag { color: #aaa; }
 
-/* Mobile Friendly Media Rules */
+/* ==========================================================================
+   MOBILE & RESPONSIVE HUD OVERRIDES (PORTRAIT & LANDSCAPE)
+   ========================================================================== */
+
+/* 1. Portrait & Vertical Mobile Screens */
 @media (max-width: 768px) {
-    #end-dashboard-title { font-size: 1.8rem; }
-    #end-dashboard-subtitle { font-size: 0.95rem; margin-bottom: 25px; }
-    .report-card { flex-direction: column; align-items: flex-start; padding: 20px; gap: 15px; }
-    .report-badge { align-self: flex-end; width: 36px; height: 36px; font-size: 1rem; margin-top: -10px; }
+    #hamburger-btn { top: 12px; left: 12px; padding: 6px; }
+    #hamburger-btn svg { width: 22px; height: 22px; }
+    
+    #subtitle-btn { top: 12px; right: 12px; padding: 6px 10px; font-size: 0.85rem; }
+
+    #progress-container {
+        top: 12px;
+        width: 50%;
+        max-width: 250px;
+        gap: 6px;
+    }
+    .score-label { font-size: 0.8rem; }
+    #progress-track-wrapper { height: 18px; border-radius: 9px; }
+    #score-digital-counter { font-size: 0.75rem; }
+
+    #chapter-status-container {
+        top: 12px;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        max-width: calc(100vw - 110px); /* Prevents collision with top buttons */
+    }
+    .status-node-dot { width: 20px; height: 20px; font-size: 0.7rem; }
+    .status-node-dot::before { display: none; } /* Hides text labels on mobile so they don't overflow */
+
+    .menu-tooltip, .cc-tooltip, .progress-tooltip { white-space: normal; font-size: 0.8rem; padding: 8px 12px; line-height: 1.2; }
+    .menu-tooltip { left: 0; top: 48px; max-width: 100px; text-align: left; }
+    .cc-tooltip { right: 0; top: 48px; max-width: 100px; text-align: right; }
+    .progress-tooltip { top: 44px; max-width: 140px; text-align: center; }
+}
+
+/* 2. Landscape / Horizontal Mobile Screens (Short Height Viewports) */
+@media (max-height: 500px) {
+    #hamburger-btn { top: 10px; left: 10px; padding: 5px; }
+    #hamburger-btn svg { width: 20px; height: 20px; }
+
+    #subtitle-btn { top: 10px; right: 10px; padding: 5px 8px; font-size: 0.8rem; }
+
+    #progress-container {
+        top: 8px;
+        width: 45%;
+        max-width: 300px;
+        gap: 8px;
+    }
+    .score-label { font-size: 0.8rem; }
+    #progress-track-wrapper { height: 16px; border-radius: 8px; }
+    #score-digital-counter { font-size: 0.7rem; }
+
+    #chapter-status-container {
+        top: 8px;
+        gap: 8px;
+        padding: 4px 14px;
+        border-radius: 20px;
+    }
+    .status-node-dot { width: 20px; height: 20px; font-size: 0.75rem; }
+    .status-node-dot::before { display: none; } /* Hides text labels in horizontal mode */
+
+    .choice-btn { padding: 10px 18px; font-size: 0.95rem; }
+    #choice-title { font-size: 1.2rem; }
 }
