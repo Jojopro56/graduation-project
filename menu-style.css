@@ -321,3 +321,29 @@ body, html {
     .chapter-card p { display: none; } 
     .card-status-badge { top: 12px; right: 12px; width: 24px; height: 28px; font-size: 0.85rem; }
 }
+
+/* --- TOP-RIGHT EXTERNAL LINK BADGE (MAIN MENU) --- */
+.external-link-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+}
+
+/* Hover Nudge & Green Glow Accent */
+.menu-block:hover .external-link-badge {
+    color: #00ff88;
+    border-color: #00ff88;
+    background: rgba(0, 45, 29, 0.85);
+    transform: translate(2px, -2px) scale(1.08);
+}

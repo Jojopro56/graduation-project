@@ -104,6 +104,14 @@ btnBackToMain.addEventListener('click', () => { playSoundFX('click'); modeSelect
 btnModeChapters.addEventListener('click', () => { playSoundFX('click'); modeSelectionContainer.classList.remove('active-panel'); modeSelectionContainer.classList.add('slide-out-left'); chapterMenuContainer.classList.remove('hidden-panel-right'); chapterMenuContainer.classList.add('active-panel'); });
 btnBackToModes.addEventListener('click', () => { playSoundFX('click'); chapterMenuContainer.classList.remove('active-panel'); chapterMenuContainer.classList.add('hidden-panel-right'); modeSelectionContainer.classList.remove('slide-out-left'); modeSelectionContainer.classList.add('active-panel'); });
 
+const btnGuide = document.getElementById('btn-guide');
+if (btnGuide) {
+    btnGuide.addEventListener('click', () => {
+        playSoundFX('click');
+        window.location.href = "bearcatguide.html";
+    });
+}
+
 function executeLaunchSequence() { loadingOverlay.style.display = 'flex'; setTimeout(() => { window.location.href = "index.html"; }, 1800); }
 
 // --- 3. PLAYBACK INTENT HANDLERS ---
