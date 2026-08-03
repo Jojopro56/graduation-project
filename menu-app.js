@@ -176,3 +176,18 @@ creditsClose.addEventListener('click', () => { playSoundFX('click'); creditsOver
 renderChapterStatuses();
 attachAudioTriggers();
 setTimeout(attachAudioTriggers, 500);
+
+// Add this helper function inside menu-app.js:
+function renderPersonalBest() {
+    const pbScore = parseInt(localStorage.getItem('personalBestScore') || '0', 10);
+    const pbScoreElem = document.getElementById('mode-pb-score');
+    if (pbScoreElem) {
+        pbScoreElem.innerText = `${pbScore} / 1000`;
+    }
+}
+
+// Ensure it is called when the menu initializes at the bottom of menu-app.js:
+renderChapterStatuses();
+renderPersonalBest();
+attachAudioTriggers();
+setTimeout(attachAudioTriggers, 500);

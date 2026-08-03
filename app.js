@@ -27,7 +27,7 @@ const storyManifest = {
         question: "Where should Mikey throw the detergent bin?", 
         choices: [
             { text: "Another Bin", valueChange: 160, nextNode: "1g" }, 
-            { text: "Trash Can", valueChange: -320, nextNode: "1b" }
+            { text: "Trash Can", valueChange: -160, nextNode: "1b" }
         ] 
     },
     "1g": { folder: "videos/1/1g/", autoNext: "chap2", outcomeTitle: "Good Job!", outcomeText: "You looked for another bin. Detergent bottles are recyclable and should never go in the landfill." },
@@ -39,7 +39,7 @@ const storyManifest = {
         folder: "videos/2/", 
         question: "Where should Mikey throw the cup?", 
         choices: [
-            { text: "Plastic Bin", valueChange: -320, nextNode: "2b" }, 
+            { text: "Plastic Bin", valueChange: -160, nextNode: "2b" }, 
             { text: "Landfill Bin", valueChange: 160, nextNode: "2g" }
         ] 
     },
@@ -52,7 +52,7 @@ const storyManifest = {
         folder: "videos/3/", 
         question: "Where should Mikey throw the test away?", 
         choices: [
-            { text: "Trash Can", valueChange: -320, nextNode: "3b" }, 
+            { text: "Trash Can", valueChange: -160, nextNode: "3b" }, 
             { text: "Hold Onto the Test", valueChange: 160, nextNode: "3g" }
         ] 
     },
@@ -66,7 +66,7 @@ const storyManifest = {
         question: "What should Mikey do with the pizza box?", 
         choices: [
             { text: "Tear Pizza Box In Half and Toss", valueChange: 160, nextNode: "4g" }, 
-            { text: "Toss Entire Box in Paper Bin", valueChange: -320, nextNode: "4b" }
+            { text: "Toss Entire Box in Paper Bin", valueChange: -160, nextNode: "4b" }
         ] 
     },
     "4g": { folder: "videos/4/4g/", autoNext: "chap5", outcomeTitle: "Good Job!", outcomeText: "Greasy pizza boxes still contain clean cardboard. Great job on separating it!" },
@@ -78,7 +78,7 @@ const storyManifest = {
         folder: "videos/5/", 
         question: "Where should Mikey Throw the Empty Bottle?", 
         choices: [
-            { text: "Landfill Bin", valueChange: -320, nextNode: "5b" }, 
+            { text: "Landfill Bin", valueChange: -160, nextNode: "5b" }, 
             { text: "Plastic Bin", valueChange: 160, nextNode: "5g" }
         ] 
     },
@@ -86,10 +86,10 @@ const storyManifest = {
     "5b": { folder: "videos/5/5b/", autoNext: "chap6", outcomeTitle: "Wrong Answer!", outcomeText: "Plastic bottles and jugs go into the plastic bin, it's a waste to throw it into the landfill bin!" },
 
     // --- CHAPTER 6 (THE GAUNTLET) ---
-    "chap6": { chapterIndex: 6, folder: "videos/6/", question: "Where should Mikey throw his FRY BOX away?", timeLimit: 10, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: -100, nextNode: "6b_1" }, { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_1" }, { text: "Plastic Bin", valueChange: -100, nextNode: "6b_1" }, { text: "Landfill Bin", valueChange: 50, nextNode: "6c2" }] },
-    "6c2": { folder: "videos/6/6c2/", question: "Where should Mikey throw his CLEAN PAPER BAG away?", timeLimit: 10, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: 50, nextNode: "6c3" }, { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_2" }, { text: "Plastic Bin", valueChange: -100, nextNode: "6b_2" }, { text: "Landfill Bin", valueChange: -100, nextNode: "6b_2" }] },
-    "6c3": { folder: "videos/6/6c3/", question: "Where should Mikey throw his SODA CAN away?", timeLimit: 10, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: -100, nextNode: "6b_3" }, { text: "Metal Cans Bin", valueChange: 50, nextNode: "6c4" }, { text: "Plastic Bin", valueChange: -100, nextNode: "6b_3" }, { text: "Landfill Bin", valueChange: -100, nextNode: "6b_3" }] },
-    "6c4": { folder: "videos/6/6c4/", question: "Where should Mikey throw his PLASTIC BOTTLE away?", timeLimit: 10, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: -100, nextNode: "6b_4" }, { text: "Metal Cans Bin", valueChange: -100, nextNode: "6b_4" }, { text: "Plastic Bin", valueChange: 50, nextNode: "6g" }, { text: "Landfill Bin", valueChange: -100, nextNode: "6b_4" }] },
+    "chap6": { chapterIndex: 6, folder: "videos/6/", question: "Where should Mikey throw his FRY BOX away?", timeLimit: 12, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: -20, nextNode: "6b_1" }, { text: "Metal Cans Bin", valueChange: -20, nextNode: "6b_1" }, { text: "Plastic Bin", valueChange: -20, nextNode: "6b_1" }, { text: "Landfill Bin", valueChange: 50, nextNode: "6c2" }] },
+    "6c2": { folder: "videos/6/6c2/", question: "Where should Mikey throw his CLEAN PAPER BAG away?", timeLimit: 12, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: 50, nextNode: "6c3" }, { text: "Metal Cans Bin", valueChange: -20, nextNode: "6b_2" }, { text: "Plastic Bin", valueChange: -20, nextNode: "6b_2" }, { text: "Landfill Bin", valueChange: -20, nextNode: "6b_2" }] },
+    "6c3": { folder: "videos/6/6c3/", question: "Where should Mikey throw his SODA CAN away?", timeLimit: 12, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: -20, nextNode: "6b_3" }, { text: "Metal Cans Bin", valueChange: 50, nextNode: "6c4" }, { text: "Plastic Bin", valueChange: -20, nextNode: "6b_3" }, { text: "Landfill Bin", valueChange: -20, nextNode: "6b_3" }] },
+    "6c4": { folder: "videos/6/6c4/", question: "Where should Mikey throw his PLASTIC BOTTLE away?", timeLimit: 12, timeoutNode: "6b_time", choices: [{ text: "Paper Bin", valueChange: -20, nextNode: "6b_4" }, { text: "Metal Cans Bin", valueChange: -20, nextNode: "6b_4" }, { text: "Plastic Bin", valueChange: 50, nextNode: "6g" }, { text: "Landfill Bin", valueChange: -20, nextNode: "6b_4" }] },
 
     // --- CHAPTER 6 ENDINGS ---
     "6g": { folder: "videos/6/6g/", autoNext: "chap7", outcomeTitle: "Good Job!", outcomeText: "You successfully sorted all the items into their proper bins!" },
@@ -129,7 +129,6 @@ const storyManifest = {
         }
     },
 
-    // FIXED: Restored missing ending nodes back to the manifest map layer
     "7p": { folder: "videos/7/7p/" }, 
     "7g": { folder: "videos/7/7g/" }, 
     "7b": { folder: "videos/7/7b/" }
@@ -174,6 +173,7 @@ const timerContainer = document.getElementById('timer-container');
 const timerText = document.getElementById('timer-text');
 const timerCircle = document.querySelector('.progress-ring__circle');
 const timerSound = document.getElementById('timer-sound');
+const pbHudScore = document.getElementById('pb-hud-score');
 
 let currentScore = 0; let currentNodeId = null; let currentSequenceIndex = 1;
 let subtitlesEnabled = false; let isDevAuthenticated = false; let targetNodeAfterOutcome = null;
@@ -181,6 +181,17 @@ let countdownTimerInterval = null; let progressBarSimulationInterval = null;
 let tooltipsTriggered = false; 
 const MAX_SCORE = 1000;
 const gameMode = localStorage.getItem('gameMode') || 'continuous';
+
+// --- PERSONAL BEST SCORE SYSTEM LOGIC ---
+function getPersonalBestScore() {
+    return parseInt(localStorage.getItem('personalBestScore') || '0', 10);
+}
+
+function updatePersonalBestHUD() {
+    if (pbHudScore) {
+        pbHudScore.innerText = getPersonalBestScore();
+    }
+}
 
 // --- HUD ARCHITECTURE DRIVERS ---
 function syncHUDModeDisplay() {
@@ -195,6 +206,7 @@ function syncHUDModeDisplay() {
         chapterStatusContainer.classList.remove('visible');
         progressContainer.style.setProperty('display', 'flex', 'important'); 
         updateProgressBar();
+        updatePersonalBestHUD();
     }
 }
 
@@ -421,6 +433,33 @@ function showEndScreen() {
     subtitleBtn.classList.remove('visible');
     if (progressContainer) progressContainer.style.setProperty('display', 'none', 'important');
     if (chapterStatusContainer) chapterStatusContainer.classList.remove('visible');
+
+    // PERSONAL BEST SCORE TRACKING FOR FULL STORY MODE
+    const pbSummaryContainer = document.getElementById('pb-summary-container');
+    if (pbSummaryContainer && gameMode === 'continuous') {
+        const oldBest = getPersonalBestScore();
+        const isNewBest = currentScore > oldBest;
+        if (isNewBest) {
+            localStorage.setItem('personalBestScore', currentScore.toString());
+        }
+        const activeBest = Math.max(oldBest, currentScore);
+
+        pbSummaryContainer.innerHTML = `
+            <div class="pb-stat-box ${isNewBest ? 'is-new-best' : ''}">
+                <div class="pb-stat-item">
+                    <span class="pb-stat-label">Final Run Score</span>
+                    <span class="pb-stat-val highlight">${currentScore} / ${MAX_SCORE}</span>
+                </div>
+                <div class="pb-stat-item">
+                    <span class="pb-stat-label">Personal Best</span>
+                    <span class="pb-stat-val">${activeBest}</span>
+                    ${isNewBest ? '<span class="new-pb-tag">★ NEW BEST! ★</span>' : ''}
+                </div>
+            </div>
+        `;
+    } else if (pbSummaryContainer) {
+        pbSummaryContainer.innerHTML = '';
+    }
 
     const container = document.getElementById('end-performance-report-wrapper');
     if (container) {
